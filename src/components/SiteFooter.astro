@@ -1,0 +1,185 @@
+---
+import { footerNavigation, mainNavigation, siteConfig } from "../config/site";
+import BrandMark from "./BrandMark.astro";
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <div class="site-footer__identity">
+      <BrandMark inverse={true} />
+      <p class="eyebrow">
+        {siteConfig.name}
+        <br />
+        {siteConfig.location}
+      </p>
+    </div>
+    <p class="site-footer__claim">
+      Gemeinsam unterwegs.
+      <br />
+      Seit 1976.
+    </p>
+  </div>
+
+  <div class="container site-footer__nav">
+    <nav aria-label="Seitennavigation im Footer">
+      <p>Entdecken</p>
+      <ul>
+        {mainNavigation.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <nav aria-label="Weitere Informationen">
+      <p>Informationen</p>
+      <ul>
+        {footerNavigation.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="site-footer__meeting">
+      <p>Stammtisch</p>
+      <strong>{siteConfig.regularsTable.schedule}</strong>
+      <span>
+        {siteConfig.regularsTable.time}
+        <br />
+        {siteConfig.regularsTable.location}
+      </span>
+      <small>Angabe vor Veröffentlichung bestätigen</small>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>
+      © {new Date().getFullYear()} {siteConfig.shortName}
+    </p>
+    <p>Motorradfreunde aus dem Murgtal</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    color: var(--color-text-inverse);
+    background: var(--color-ink);
+  }
+
+  .site-footer__top {
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--space-7);
+    border-bottom: 0.0625rem solid rgb(247 245 239 / 0.18);
+  }
+
+  .site-footer__identity {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .site-footer__identity p {
+    color: var(--color-metal);
+    font-size: 0.65rem;
+    line-height: 1.5;
+  }
+
+  .site-footer__claim {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+  }
+
+  .site-footer__nav {
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+  }
+
+  .site-footer__nav p {
+    margin: 0 0 var(--space-3);
+    color: var(--color-metal);
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__nav ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-footer__nav a {
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--transition);
+  }
+
+  .site-footer__nav a:hover {
+    text-decoration-color: var(--color-accent-light);
+  }
+
+  .site-footer__meeting {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-footer__meeting strong {
+    font-size: var(--step-1);
+  }
+
+  .site-footer__meeting span {
+    margin-top: var(--space-1);
+    color: var(--color-metal);
+  }
+
+  .site-footer__meeting small {
+    margin-top: var(--space-3);
+    padding: 0.2rem 0.45rem;
+    color: var(--color-text-inverse);
+    border: 0.0625rem solid rgb(247 245 239 / 0.28);
+    font-size: 0.63rem;
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-5);
+    padding-block: var(--space-4);
+    color: var(--color-metal);
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.18);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__bottom p {
+    margin: 0;
+  }
+
+  @media (min-width: 45rem) {
+    .site-footer__top {
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+    }
+
+    .site-footer__claim {
+      justify-self: end;
+      text-align: right;
+    }
+
+    .site-footer__nav {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

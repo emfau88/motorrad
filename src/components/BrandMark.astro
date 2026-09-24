@@ -1,0 +1,65 @@
+---
+type Props = {
+  inverse?: boolean;
+};
+
+const { inverse = false } = Astro.props;
+---
+
+<span
+  class:list={["brand-mark", { "brand-mark--inverse": inverse }]}
+  aria-hidden="true"
+>
+  <span class="brand-mark__letters">OMF</span>
+  <span class="brand-mark__year">1976</span>
+</span>
+
+<style>
+  .brand-mark {
+    position: relative;
+    display: inline-grid;
+    width: 4.5rem;
+    height: 2.75rem;
+    color: var(--color-ink);
+    border: 0.125rem solid currentColor;
+    place-items: center;
+  }
+
+  .brand-mark::after {
+    position: absolute;
+    right: -0.125rem;
+    bottom: -0.125rem;
+    width: 1rem;
+    height: 0.22rem;
+    background: var(--color-accent);
+    content: "";
+  }
+
+  .brand-mark--inverse {
+    color: var(--color-text-inverse);
+  }
+
+  .brand-mark__letters {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .brand-mark__year {
+    position: absolute;
+    right: 0.22rem;
+    bottom: 0.02rem;
+    padding-inline: 0.12rem;
+    background: var(--color-paper);
+    font-size: 0.45rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .brand-mark--inverse .brand-mark__year {
+    background: var(--color-ink);
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+type Props = {
+  category: string;
+  description: string;
+  aspect?: "landscape" | "portrait" | "wide";
+  tone?: "dark" | "light";
+  position?: string;
+  class?: string;
+};
+
+const {
+  category,
+  description,
+  aspect = "landscape",
+  tone = "dark",
+  position = "50% 50%",
+  class: className,
+} = Astro.props;
+---
+
+<figure
+  class:list={[
+    "media-placeholder",
+    `media-placeholder--${aspect}`,
+    `media-placeholder--${tone}`,
+    className,
+  ]}
+  style={`--media-position: ${position}`}
+  role="img"
+  aria-label={`${category}: ${description}`}
+>
+  <span class="media-placeholder__line" aria-hidden="true"></span>
+  <figcaption>
+    <span>{category}</span>
+    <strong>{description}</strong>
+  </figcaption>
+</figure>
+
+<style>
+  .media-placeholder {
+    position: relative;
+    display: grid;
+    overflow: hidden;
+    min-height: 18rem;
+    margin: 0;
+    isolation: isolate;
+    place-items: end start;
+  }
+
+  .media-placeholder--landscape {
+    aspect-ratio: 4 / 3;
+  }
+
+  .media-placeholder--portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .media-placeholder--wide {
+    aspect-ratio: 16 / 8;
+  }
+
+  .media-placeholder--dark {
+    color: var(--color-text-inverse);
+    background:
+      radial-gradient(
+        circle at var(--media-position),
+        rgb(166 70 45 / 0.45),
+        transparent 28%
+      ),
+      linear-gradient(135deg, #2c2d29, #111210 62%);
+  }
+
+  .media-placeholder--light {
+    color: var(--color-text);
+    background:
+      radial-gradient(
+        circle at var(--media-position),
+        rgb(166 70 45 / 0.24),
+        transparent 30%
+      ),
+      linear-gradient(135deg, #dedbd2, #b9bab5);
+  }
+
+  .media-placeholder::before,
+  .media-placeholder::after {
+    position: absolute;
+    z-index: -1;
+    border: 0.0625rem solid currentColor;
+    border-radius: 50%;
+    content: "";
+    opacity: 0.16;
+  }
+
+  .media-placeholder::before {
+    top: 16%;
+    right: -8%;
+    width: 42%;
+    aspect-ratio: 1;
+  }
+
+  .media-placeholder::after {
+    right: 21%;
+    bottom: -19%;
+    width: 57%;
+    aspect-ratio: 1;
+  }
+
+  .media-placeholder__line {
+    position: absolute;
+    top: 0;
+    left: 14%;
+    width: 0.0625rem;
+    height: 100%;
+    background: currentColor;
+    opacity: 0.13;
+    transform: rotate(18deg) scaleY(1.25);
+  }
+
+  figcaption {
+    display: grid;
+    max-width: 28rem;
+    gap: var(--space-1);
+    padding: var(--space-4);
+  }
+
+  figcaption span {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  figcaption strong {
+    font-size: var(--step-1);
+    line-height: 1.2;
+  }
+</style>

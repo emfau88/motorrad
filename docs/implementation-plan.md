@@ -28,6 +28,8 @@ Status: abgeschlossen
 - Footer
 - wiederverwendbare Section- und Bildkomponenten
 
+Status: abgeschlossen
+
 ## Block 4 – Startseite
 
 - Hero
