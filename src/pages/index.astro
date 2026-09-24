@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+---
+
+<BaseLayout noIndex={true}>
+  <section class="foundation">
+    <div class="container foundation__inner">
+      <p class="eyebrow">
+        {siteConfig.name} · seit {siteConfig.foundingYear}
+      </p>
+      <h1>{siteConfig.claim}</h1>
+      <p>
+        Das technische Fundament steht. Die gestaltete Website entsteht im
+        nächsten Umsetzungsschritt.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .foundation {
+    display: grid;
+    min-height: 100svh;
+    place-items: end start;
+    color: var(--color-text-inverse);
+    background:
+      linear-gradient(120deg, rgb(17 18 16 / 0.96), rgb(17 18 16 / 0.72)),
+      var(--color-ink);
+  }
+
+  .foundation__inner {
+    padding-block: var(--space-7);
+  }
+
+  h1 {
+    max-width: 10ch;
+    margin: var(--space-4) 0;
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-stretch: condensed;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+  }
+
+  .foundation__inner > p:last-child {
+    max-width: 38rem;
+    margin: 0;
+    color: rgb(247 245 239 / 0.72);
+  }
+</style>
