@@ -1,0 +1,156 @@
+---
+import type { Post } from "../../types/content";
+import { formatFullDate } from "../../utils/dates";
+import { siteUrl } from "../../utils/urls";
+import ButtonLink from "../ButtonLink.astro";
+import MediaPlaceholder from "../MediaPlaceholder.astro";
+import SectionHeading from "../SectionHeading.astro";
+
+type Props = {
+  posts: Post[];
+};
+
+const { posts } = Astro.props;
+const categoryLabels = {
+  touren: "Touren",
+  verein: "Verein",
+  veranstaltungen: "Veranstaltungen",
+};
+---
+
+<section class="latest-posts section" aria-labelledby="latest-posts-title">
+  <div class="container">
+    <div class="latest-posts__heading">
+      <SectionHeading
+        eyebrow="Aktuelles"
+        title="Was bei uns passiert."
+        intro="Touren, Veranstaltungen und Geschichten aus dem Vereinsleben."
+      />
+      <ButtonLink href="/aktuelles" variant="secondary">
+        Alle Beiträge
+      </ButtonLink>
+    </div>
+    <div class="latest-posts__grid">
+      {posts.map((post, index) => (
+        <article
+          class:list={["post-teaser", { "post-teaser--lead": index === 0 }]}
+        >
+          <a
+            href={siteUrl(`/aktuelles/${post.slug}`)}
+            aria-label={`${post.title} lesen`}
+          >
+            <MediaPlaceholder
+              category={categoryLabels[post.category]}
+              description={post.coverImage.alt}
+              tone={index === 1 ? "dark" : "light"}
+              aspect={index === 0 ? "wide" : "landscape"}
+              position={post.coverImage.focalPoint}
+            />
+          </a>
+          <div class="post-teaser__meta">
+            <span>{categoryLabels[post.category]}</span>
+            {post.placeholder ? (
+              <span>Beispielinhalt</span>
+            ) : (
+              <time datetime={post.publishedAt}>
+                {formatFullDate(post.publishedAt)}
+              </time>
+            )}
+          </div>
+          <h3>
+            <a href={siteUrl(`/aktuelles/${post.slug}`)}>{post.title}</a>
+          </h3>
+          <p>{post.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .latest-posts {
+    background: var(--color-paper-bright);
+  }
+
+  .latest-posts__heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .latest-posts__grid {
+    display: grid;
+    gap: var(--space-6) var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .post-teaser > a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .post-teaser :global(.media-placeholder) {
+    min-height: 16rem;
+  }
+
+  .post-teaser__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    color: var(--color-muted);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .post-teaser h3 {
+    margin: var(--space-2) 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .post-teaser h3 a {
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--transition);
+  }
+
+  .post-teaser h3 a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .post-teaser > p {
+    max-width: 36rem;
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .latest-posts__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .post-teaser--lead {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 68rem) {
+    .latest-posts__grid {
+      grid-template-columns: 1.35fr 0.65fr 0.65fr;
+    }
+
+    .post-teaser--lead {
+      grid-column: auto;
+    }
+
+    .post-teaser:not(.post-teaser--lead) :global(.media-placeholder) {
+      aspect-ratio: 3 / 4;
+    }
+  }
+</style>

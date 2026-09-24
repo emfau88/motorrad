@@ -1,4 +1,6 @@
 ---
+import { siteUrl } from "../utils/urls";
+
 type Props = {
   href: string;
   variant?: "primary" | "secondary" | "light";
@@ -6,11 +8,12 @@ type Props = {
 };
 
 const { href, variant = "primary", label } = Astro.props;
+const resolvedHref = siteUrl(href);
 ---
 
 <a
   class:list={["button-link", `button-link--${variant}`]}
-  href={href}
+  href={resolvedHref}
   aria-label={label}
 >
   <span>

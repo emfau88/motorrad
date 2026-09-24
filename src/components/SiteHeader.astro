@@ -1,5 +1,6 @@
 ---
 import { mainNavigation, siteConfig } from "../config/site";
+import { pathWithoutBase, siteUrl } from "../utils/urls";
 import BrandMark from "./BrandMark.astro";
 
 type Props = {
@@ -7,15 +8,16 @@ type Props = {
 };
 
 const { currentPath = "/" } = Astro.props;
+const localPath = pathWithoutBase(currentPath);
 const isActive = (href: string) =>
-  href === "/" ? currentPath === href : currentPath.startsWith(href);
+  href === "/" ? localPath === href : localPath.startsWith(href);
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
     <a
       class="site-header__brand"
-      href="/"
+      href={siteUrl("/")}
       aria-label={`${siteConfig.name} – Startseite`}
     >
       <BrandMark />
@@ -30,7 +32,7 @@ const isActive = (href: string) =>
         {mainNavigation.map((item) => (
           <li>
             <a
-              href={item.href}
+              href={siteUrl(item.href)}
               aria-current={isActive(item.href) ? "page" : undefined}
             >
               {item.label}
@@ -54,7 +56,7 @@ const isActive = (href: string) =>
             {mainNavigation.map((item, index) => (
               <li>
                 <a
-                  href={item.href}
+                  href={siteUrl(item.href)}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   <span aria-hidden="true">

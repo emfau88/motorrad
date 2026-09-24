@@ -2,9 +2,11 @@
 
 Neue offizielle Website der Ottenauer Motorradfreunde e. V. aus Gaggenau-Ottenau.
 
+**Testversion:** [https://emfau88.github.io/motorrad/](https://emfau88.github.io/motorrad/)
+
 ## Status
 
-Das Projekt befindet sich im Aufbau. Der aktuelle Stand enthält das technische Fundament, das Datenmodell und die Projektdokumentation. Das CMS ist bewusst noch nicht Bestandteil dieser ersten Frontend-Phase.
+Das Projekt befindet sich im Aufbau. Der aktuelle Stand enthält das technische Fundament, das responsive Seitengerüst und die vollständige Startseite mit klar gekennzeichneten Beispielinhalten. Das CMS ist bewusst noch nicht Bestandteil dieser ersten Frontend-Phase.
 
 ## Technik
 

@@ -1,0 +1,110 @@
+---
+import { siteConfig } from "../../config/site";
+import ButtonLink from "../ButtonLink.astro";
+import MediaPlaceholder from "../MediaPlaceholder.astro";
+---
+
+<section class="join-section section" aria-labelledby="join-title">
+  <div class="container join-section__grid">
+    <MediaPlaceholder
+      category="Kennenlernen"
+      description="Gruppenfoto oder Clubhausmotiv folgt"
+      aspect="portrait"
+      tone="dark"
+    />
+    <div class="join-section__copy">
+      <p class="eyebrow">Mitfahren · Mitmachen</p>
+      <h2 id="join-title">
+        Du fährst Motorrad?
+        <br />
+        Dann fahr doch mal mit.
+      </h2>
+      <p>
+        Du hast Lust auf gemeinsame Touren, Motorräder und ein aktives
+        Vereinsleben? Dann lern uns einfach unverbindlich kennen.
+      </p>
+      <div class="join-section__meeting">
+        <span>Stammtisch</span>
+        <strong>{siteConfig.regularsTable.schedule}</strong>
+        <p>
+          {siteConfig.regularsTable.time}
+          <br />
+          {siteConfig.regularsTable.location}
+        </p>
+        <small>Terminangabe vor Veröffentlichung bestätigen</small>
+      </div>
+      <ButtonLink href="/kontakt">Kontakt aufnehmen</ButtonLink>
+    </div>
+  </div>
+</section>
+
+<style>
+  .join-section {
+    color: var(--color-text-inverse);
+    background: var(--color-ink-soft);
+  }
+
+  .join-section__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .join-section :global(.media-placeholder) {
+    min-height: 28rem;
+  }
+
+  .join-section__copy h2 {
+    max-width: 13ch;
+    margin: var(--space-3) 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+  }
+
+  .join-section__copy > p {
+    max-width: 38rem;
+    margin: 0;
+    color: rgb(247 245 239 / 0.7);
+  }
+
+  .join-section__meeting {
+    display: grid;
+    justify-items: start;
+    margin-block: var(--space-5);
+    padding-block: var(--space-4);
+    border-block: 0.0625rem solid rgb(247 245 239 / 0.2);
+  }
+
+  .join-section__meeting > span {
+    color: var(--color-accent-light);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .join-section__meeting strong {
+    margin-top: var(--space-2);
+    font-size: var(--step-1);
+  }
+
+  .join-section__meeting p {
+    margin: var(--space-1) 0 0;
+    color: var(--color-metal);
+  }
+
+  .join-section__meeting small {
+    margin-top: var(--space-3);
+    color: var(--color-metal);
+    font-size: 0.65rem;
+  }
+
+  @media (min-width: 58rem) {
+    .join-section__grid {
+      grid-template-columns: minmax(20rem, 0.75fr) minmax(0, 1fr);
+      gap: clamp(3rem, 8vw, 8rem);
+    }
+  }
+</style>

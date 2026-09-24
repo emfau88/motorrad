@@ -1,5 +1,6 @@
 ---
 import { footerNavigation, mainNavigation, siteConfig } from "../config/site";
+import { siteUrl } from "../utils/urls";
 import BrandMark from "./BrandMark.astro";
 ---
 
@@ -26,7 +27,7 @@ import BrandMark from "./BrandMark.astro";
       <ul>
         {mainNavigation.map((item) => (
           <li>
-            <a href={item.href}>{item.label}</a>
+            <a href={siteUrl(item.href)}>{item.label}</a>
           </li>
         ))}
       </ul>
@@ -36,7 +37,7 @@ import BrandMark from "./BrandMark.astro";
       <ul>
         {footerNavigation.map((item) => (
           <li>
-            <a href={item.href}>{item.label}</a>
+            <a href={siteUrl(item.href)}>{item.label}</a>
           </li>
         ))}
       </ul>

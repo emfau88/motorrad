@@ -39,6 +39,8 @@ Status: abgeschlossen
 - drei neueste Beiträge
 - Mitgliedergewinnung
 
+Status: abgeschlossen
+
 ## Block 5 – Inhaltsseiten
 
 - Aktuelles mit einfachen Kategorien

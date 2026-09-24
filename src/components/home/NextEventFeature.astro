@@ -1,0 +1,94 @@
+---
+import type { Event } from "../../types/content";
+import { formatEventDate } from "../../utils/dates";
+import ButtonLink from "../ButtonLink.astro";
+
+type Props = {
+  event?: Event;
+};
+
+const { event } = Astro.props;
+---
+
+<section class="next-event section" aria-labelledby="next-event-title">
+  <div class="container">
+    <p class="eyebrow">Nächster Termin</p>
+    {event ? (
+      <article class="next-event__grid">
+        <time datetime={event.startDate}>{formatEventDate(event)}</time>
+        <div class="next-event__copy">
+          <h2 id="next-event-title">{event.title}</h2>
+          <p>{event.location}</p>
+        </div>
+        <ButtonLink href={`/termine#${event.slug}`} variant="light">
+          Details ansehen
+        </ButtonLink>
+      </article>
+    ) : (
+      <div class="next-event__empty">
+        <h2 id="next-event-title">Neue Termine folgen.</h2>
+        <ButtonLink href="/termine" variant="light">
+          Zur Terminübersicht
+        </ButtonLink>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .next-event {
+    color: var(--color-text-inverse);
+    background: var(--color-accent);
+  }
+
+  .next-event__grid {
+    display: grid;
+    gap: var(--space-5);
+    align-items: end;
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.45);
+  }
+
+  .next-event time {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .next-event h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+  }
+
+  .next-event__copy p {
+    margin: var(--space-2) 0 0;
+  }
+
+  .next-event__grid :global(.button-link) {
+    justify-self: start;
+  }
+
+  .next-event__empty {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.45);
+  }
+
+  @media (min-width: 55rem) {
+    .next-event__grid {
+      grid-template-columns: 1fr 0.8fr auto;
+    }
+  }
+</style>

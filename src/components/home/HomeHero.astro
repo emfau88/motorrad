@@ -1,0 +1,151 @@
+---
+import { siteConfig } from "../../config/site";
+import ButtonLink from "../ButtonLink.astro";
+import MediaPlaceholder from "../MediaPlaceholder.astro";
+---
+
+<section class="home-hero" aria-labelledby="home-hero-title">
+  <div class="container home-hero__grid">
+    <div class="home-hero__copy">
+      <p class="eyebrow">
+        {siteConfig.name} · seit {siteConfig.foundingYear}
+      </p>
+      <h1 id="home-hero-title">
+        Gemeinsam unterwegs.
+        <br />
+        Seit 1976.
+      </h1>
+      <p>{siteConfig.description}</p>
+      <div class="home-hero__actions">
+        <ButtonLink href="/termine">Termine ansehen</ButtonLink>
+        <ButtonLink href="/verein" variant="light">
+          Uns kennenlernen
+        </ButtonLink>
+      </div>
+    </div>
+    <div class="home-hero__visual">
+      <MediaPlaceholder
+        category="Hero"
+        description="Großes OMF-Tourenfoto folgt"
+        aspect="portrait"
+        position="64% 36%"
+      />
+      <p aria-hidden="true">
+        Murgtal
+        <br />
+        48°48′N
+      </p>
+    </div>
+  </div>
+  <div class="home-hero__rail" aria-hidden="true">
+    <span>Motorräder</span>
+    <i></i>
+    <span>Gemeinschaft</span>
+    <i></i>
+    <span>Schwarzwald</span>
+  </div>
+</section>
+
+<style>
+  .home-hero {
+    color: var(--color-text-inverse);
+    background: var(--color-ink);
+  }
+
+  .home-hero__grid {
+    display: grid;
+    min-height: calc(100svh - var(--header-height));
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+  }
+
+  .home-hero__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  h1 {
+    max-width: 9ch;
+    margin: var(--space-4) 0;
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 0.88;
+    text-wrap: balance;
+  }
+
+  .home-hero__copy > p:not(.eyebrow) {
+    max-width: 38rem;
+    margin: 0;
+    color: rgb(247 245 239 / 0.72);
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .home-hero__visual {
+    position: relative;
+  }
+
+  .home-hero__visual :global(.media-placeholder) {
+    height: 100%;
+    min-height: 26rem;
+  }
+
+  .home-hero__visual > p {
+    position: absolute;
+    z-index: 2;
+    top: var(--space-3);
+    right: var(--space-3);
+    margin: 0;
+    color: rgb(247 245 239 / 0.56);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    line-height: 1.5;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  .home-hero__rail {
+    display: flex;
+    overflow: hidden;
+    min-height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding-inline: var(--gutter);
+    color: var(--color-metal);
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.18);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .home-hero__rail i {
+    width: 1.8rem;
+    height: 0.0625rem;
+    background: var(--color-accent-light);
+  }
+
+  @media (min-width: 56rem) {
+    .home-hero__grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.72fr);
+      align-items: stretch;
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+
+    .home-hero__visual :global(.media-placeholder) {
+      min-height: 38rem;
+    }
+  }
+</style>

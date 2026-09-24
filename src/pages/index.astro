@@ -1,136 +1,23 @@
 ---
-import ButtonLink from "../components/ButtonLink.astro";
-import MediaPlaceholder from "../components/MediaPlaceholder.astro";
-import SectionHeading from "../components/SectionHeading.astro";
-import { siteConfig } from "../config/site";
+import AnniversaryFeature from "../components/home/AnniversaryFeature.astro";
+import CoreThemes from "../components/home/CoreThemes.astro";
+import HomeHero from "../components/home/HomeHero.astro";
+import JoinSection from "../components/home/JoinSection.astro";
+import LatestPosts from "../components/home/LatestPosts.astro";
+import NextEventFeature from "../components/home/NextEventFeature.astro";
+import { getNextEvent } from "../data/events";
+import { getLatestPosts } from "../data/posts";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const nextEvent = getNextEvent();
+const latestPosts = getLatestPosts(3);
 ---
 
 <BaseLayout noIndex={true}>
-  <section class="shell-intro">
-    <div class="container shell-intro__grid">
-      <div class="shell-intro__copy">
-        <p class="eyebrow">
-          {siteConfig.name} · seit {siteConfig.foundingYear}
-        </p>
-        <h1>{siteConfig.claim}</h1>
-        <p>{siteConfig.description}</p>
-        <div class="shell-intro__actions">
-          <ButtonLink href="/termine">Termine ansehen</ButtonLink>
-          <ButtonLink href="/verein" variant="light">
-            Uns kennenlernen
-          </ButtonLink>
-        </div>
-      </div>
-      <MediaPlaceholder
-        class="shell-intro__media"
-        category="Hero-Bild"
-        description="Echtes OMF-Motiv folgt"
-        aspect="portrait"
-        position="68% 38%"
-      />
-    </div>
-  </section>
-
-  <section class="section foundation-status">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Block 3 · Seitengerüst"
-        title="Der Rahmen für alle Inhalte steht."
-        intro="Navigation, wiederverwendbare Gestaltungselemente und Bildflächen bilden jetzt eine konsistente Grundlage. Die vollständige Startseite folgt im nächsten Block."
-        align="split"
-      />
-      <div class="foundation-status__grid">
-        <MediaPlaceholder
-          category="Touren"
-          description="Kurven, Alpen und gemeinsame Kilometer"
-          tone="light"
-        />
-        <MediaPlaceholder
-          category="Gemeinschaft"
-          description="Clubhaus, Stammtisch und Vereinsleben"
-          tone="dark"
-        />
-      </div>
-    </div>
-  </section>
+  <HomeHero />
+  <AnniversaryFeature />
+  <CoreThemes />
+  <NextEventFeature event={nextEvent} />
+  <LatestPosts posts={latestPosts} />
+  <JoinSection />
 </BaseLayout>
-
-<style>
-  .shell-intro {
-    color: var(--color-text-inverse);
-    background: var(--color-ink);
-  }
-
-  .shell-intro__grid {
-    display: grid;
-    min-height: calc(100svh - var(--header-height));
-    gap: var(--space-5);
-    padding-block: var(--space-6);
-  }
-
-  .shell-intro__copy {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  h1 {
-    max-width: 8.5ch;
-    margin: var(--space-4) 0;
-    font-family: var(--font-display);
-    font-size: var(--step-4);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    text-wrap: balance;
-  }
-
-  .shell-intro__copy > p:not(.eyebrow) {
-    max-width: 38rem;
-    margin: 0;
-    color: rgb(247 245 239 / 0.72);
-  }
-
-  .shell-intro__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-5);
-  }
-
-  .shell-intro__media {
-    min-height: 24rem;
-  }
-
-  .foundation-status__grid {
-    display: grid;
-    gap: var(--space-4);
-    margin-top: var(--space-6);
-  }
-
-  @media (min-width: 42rem) {
-    .foundation-status__grid {
-      grid-template-columns: 1.25fr 0.75fr;
-      align-items: start;
-    }
-
-    .foundation-status__grid > :last-child {
-      margin-top: var(--space-6);
-    }
-  }
-
-  @media (min-width: 56rem) {
-    .shell-intro__grid {
-      grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.72fr);
-      align-items: stretch;
-      gap: clamp(3rem, 7vw, 7rem);
-      padding-block: var(--space-6);
-    }
-
-    .shell-intro__media {
-      min-height: 38rem;
-    }
-  }
-</style>

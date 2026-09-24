@@ -1,0 +1,140 @@
+---
+import { siteConfig } from "../../config/site";
+import ButtonLink from "../ButtonLink.astro";
+---
+
+<section class="anniversary section" aria-labelledby="anniversary-title">
+  <div class="container anniversary__grid">
+    <div class="anniversary__years" aria-hidden="true">
+      <span>1976</span>
+      <i></i>
+      <span>2026</span>
+    </div>
+    <div class="anniversary__copy">
+      <p class="eyebrow">Ein halbes Jahrhundert</p>
+      <h2 id="anniversary-title">50 Jahre OMF</h2>
+      <p>
+        Fünf Jahrzehnte Motorräder, Touren, Freundschaft und Vereinsleben. 2026
+        feiern die Ottenauer Motorradfreunde ihr 50-jähriges Bestehen.
+      </p>
+      <ButtonLink href="/50-jahre" variant="secondary">
+        Alle Infos zum Jubiläum
+      </ButtonLink>
+    </div>
+    <article class="anniversary__event">
+      <p>Jubiläum</p>
+      <time datetime={siteConfig.anniversary.startDate}>
+        17.–18. Oktober 2026
+      </time>
+      <h3>{siteConfig.anniversary.label}</h3>
+      <span>{siteConfig.anniversary.location}</span>
+    </article>
+  </div>
+</section>
+
+<style>
+  .anniversary {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-paper-bright);
+  }
+
+  .anniversary::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 16%;
+    width: 0.0625rem;
+    background: var(--color-line);
+    content: "";
+  }
+
+  .anniversary__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .anniversary__years {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: clamp(2.7rem, 8vw, 7.5rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+  }
+
+  .anniversary__years i {
+    width: clamp(2rem, 7vw, 7rem);
+    height: 0.15rem;
+    background: currentColor;
+  }
+
+  .anniversary__copy h2 {
+    margin: var(--space-3) 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+
+  .anniversary__copy > p:not(.eyebrow) {
+    max-width: 38rem;
+    margin: 0 0 var(--space-5);
+    color: var(--color-muted);
+  }
+
+  .anniversary__event {
+    align-self: end;
+    padding: var(--space-5);
+    color: var(--color-text-inverse);
+    background: var(--color-accent);
+  }
+
+  .anniversary__event p {
+    margin: 0 0 var(--space-5);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .anniversary__event time,
+  .anniversary__event span {
+    display: block;
+    font-size: var(--step--1);
+    font-weight: 650;
+  }
+
+  .anniversary__event h3 {
+    margin: var(--space-1) 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  @media (min-width: 58rem) {
+    .anniversary__grid {
+      grid-template-columns: minmax(0, 0.8fr) minmax(20rem, 0.8fr) minmax(
+          18rem,
+          0.45fr
+        );
+      align-items: center;
+    }
+
+    .anniversary__years {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .anniversary__years i {
+      width: 0.15rem;
+      height: 3rem;
+      margin-left: 0.2em;
+    }
+  }
+</style>

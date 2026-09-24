@@ -19,6 +19,7 @@ export type Post = {
   coverImage: ImageReference;
   gallery?: ImageReference[];
   featured?: boolean;
+  placeholder?: boolean;
 };
 
 export type Event = {
