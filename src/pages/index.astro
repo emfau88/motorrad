@@ -3,7 +3,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
-const assetRevision = "20260925-2";
+const assetRevision = "20260925-3";
 
 const navigation = [
   { href: "#jubilaeum", label: "Jubiläum" },
@@ -167,13 +167,12 @@ const history = [
             <div class="anniversary-seal" aria-hidden="true">
               <img
                 class="anniversary-seal__base"
-                src={asset("anniversary-medallion.png")}
+                src={asset("anniversary-laurel-v2.png")}
                 alt=""
                 width="768"
                 height="768"
               />
               <span class="anniversary-seal__content">
-                <span class="anniversary-seal__kicker">Jubiläum</span>
                 <img
                   class="anniversary-seal__logo"
                   src={asset("omf-logo-transparent-v2.png")}

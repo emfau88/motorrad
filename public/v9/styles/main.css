@@ -456,12 +456,12 @@ button {
 .anniversary-seal {
   position: relative;
   display: flex;
-  width: 270px;
+  width: 300px;
   aspect-ratio: 1;
   justify-self: center;
   align-items: stretch;
   justify-content: stretch;
-  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.38));
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.32));
 }
 .anniversary-seal__base {
   position: absolute;
@@ -469,6 +469,8 @@ button {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: grayscale(1) sepia(1) saturate(1.35) brightness(0.94);
+  opacity: 0.84;
 }
 .anniversary-seal__content {
   position: relative;
@@ -479,34 +481,30 @@ button {
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 44px;
+  padding: 58px 48px 43px;
   color: #fff;
   text-align: center;
 }
 .anniversary-seal__logo {
-  width: 108px;
-  height: 86px;
-  margin: 5px 0 7px;
+  width: 154px;
+  height: 98px;
+  margin: 0 0 8px;
   object-fit: contain;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.38));
 }
-.anniversary-seal__kicker,
 .anniversary-seal__content > span:last-child {
-  font-size: 0.59rem;
+  font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.anniversary-seal__kicker {
-  color: var(--gold2);
-}
 .anniversary-seal__content > span:last-child {
-  color: #c5cbc5;
+  color: #e8cf85;
 }
 .anniversary-seal strong {
   margin-bottom: 3px;
   font-family: var(--display);
-  font-size: 1.95rem;
+  font-size: 1.85rem;
   letter-spacing: 0.01em;
   line-height: 1;
   text-transform: uppercase;
@@ -1146,15 +1144,15 @@ footer a {
     margin-bottom: 28px;
   }
   .anniversary-seal {
-    width: 220px;
+    width: 238px;
     margin: 22px auto 0;
   }
   .anniversary-seal__content {
-    padding: 34px;
+    padding: 45px 38px 32px;
   }
   .anniversary-seal__logo {
-    width: 88px;
-    height: 70px;
+    width: 122px;
+    height: 77px;
   }
   .anniversary-seal strong {
     font-size: 1.65rem;
