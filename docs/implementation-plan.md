@@ -59,6 +59,8 @@ Status: abgeschlossen
 - Termin und anpassbarer Programmbereich
 - Weiterverwendung als späteres Archiv
 
+Status: abgeschlossen
+
 ## Block 7 – Qualität
 
 - Browserprüfung auf 390, 768, 1280 und 1440 Pixel Breite

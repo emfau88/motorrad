@@ -1,52 +1,436 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
-import PageHero from "../components/PageHero.astro";
+import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
 import { siteConfig } from "../config/site";
+import { historyEntries } from "../data/history";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { formatEventDate } from "../utils/dates";
+
+const programmeSlots = [
+  "Programm und Uhrzeiten folgen nach Vereinsfreigabe.",
+  "Weitere Jubiläumsangebote werden hier ergänzt.",
+  "Hinweise für Gäste erscheinen hier rechtzeitig vor dem Termin.",
+];
 ---
 
 <BaseLayout
   title="50 Jahre OMF"
-  description="Das Jubiläumsjahr der Ottenauer Motorradfreunde."
+  description="50 Jahre Ottenauer Motorradfreunde: Jubiläum, Geschichte und Ausblick."
   noIndex={true}
 >
-  <PageHero
-    eyebrow="Jubiläum 2026"
-    title="50 Jahre OMF"
-    intro="2026 feiern die Ottenauer Motorradfreunde ihr 50-jähriges Bestehen. Die ausführliche Jubiläumsseite entsteht im nächsten Projektblock."
-    imageLabel="50 Jahre OMF"
-    imageDescription="Historisches Jubiläumsfoto folgt"
-  />
-  <section class="anniversary section">
-    <div class="container">
-      <p class="eyebrow">Vormerken</p>
-      <h2>{formatEventDate(siteConfig.anniversary)}</h2>
-      <p>
-        {siteConfig.anniversary.label} · {siteConfig.anniversary.location}
+  <section class="jubilee-hero" aria-labelledby="jubilee-title">
+    <div class="container jubilee-hero__grid">
+      <div class="jubilee-hero__copy">
+        <p class="eyebrow">Jubiläumsjahr 2026</p>
+        <p class="jubilee-hero__years" aria-label="1976 bis 2026">
+          <span>1976</span>
+          <i></i>
+          <span>2026</span>
+        </p>
+        <h1 id="jubilee-title">
+          50 Jahre
+          <br />
+          OMF
+        </h1>
+        <p>
+          Fünf Jahrzehnte Motorräder, gemeinsame Wege und eine Gemeinschaft aus
+          Ottenau.
+        </p>
+        <ButtonLink href="#termin">Jubiläum vormerken</ButtonLink>
+      </div>
+      <div class="jubilee-hero__visual">
+        <MediaPlaceholder
+          category="Archivbild"
+          description="Historisches OMF-Foto wird ergänzt"
+          aspect="portrait"
+          tone="dark"
+          position="65% 40%"
+        />
+        <span aria-hidden="true">Murgtal · seit 1976</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="anniversary-intro section" aria-labelledby="intro-title">
+    <div class="container anniversary-intro__grid">
+      <p class="anniversary-intro__number" aria-hidden="true">
+        50
       </p>
-      <ButtonLink href="/termine" variant="secondary">
-        Zum Termin
-      </ButtonLink>
+      <div>
+        <p class="eyebrow">Ein Grund zum Feiern</p>
+        <h2 id="intro-title">Ein halbes Jahrhundert gemeinsam unterwegs.</h2>
+        <p>
+          2026 feiern die Ottenauer Motorradfreunde ihr 50-jähriges Bestehen.
+          Diese Seite wächst mit dem Jubiläumsjahr weiter: als Einladung zum
+          Termin und später als kleines Archiv der gemeinsamen Geschichte.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline section" aria-labelledby="timeline-title">
+    <div class="container">
+      <header class="timeline__heading">
+        <p class="eyebrow">Rückblick</p>
+        <h2 id="timeline-title">Stationen der OMF</h2>
+      </header>
+      <ol>
+        {historyEntries.map((entry, index) => (
+          <li>
+            <div class="timeline__year">{entry.year}</div>
+            <div class="timeline__content">
+              <h3>{entry.title}</h3>
+              <p>{entry.description}</p>
+            </div>
+            {index === 0 || index === historyEntries.length - 1 ? (
+              <MediaPlaceholder
+                category="Zeitdokument"
+                description={
+                  index === 0
+                    ? "Foto aus den frühen Vereinsjahren folgt"
+                    : "Jubiläumsfoto 2026 folgt"
+                }
+                aspect="landscape"
+                tone={index === 0 ? "light" : "dark"}
+              />
+            ) : null}
+          </li>
+        ))}
+      </ol>
+      <PlaceholderNotice title="Archiv wächst weiter">
+        Historische Fotos, Erinnerungen und weitere Meilensteine werden nach
+        Sichtung und Freigabe durch den Verein ergänzt.
+      </PlaceholderNotice>
+    </div>
+  </section>
+
+  <section id="termin" class="date-card section" aria-labelledby="date-title">
+    <div class="container date-card__grid">
+      <div>
+        <p class="eyebrow">Jubiläum vormerken</p>
+        <h2 id="date-title">{formatEventDate(siteConfig.anniversary)}</h2>
+        <p>{siteConfig.anniversary.label}</p>
+      </div>
+      <div class="date-card__location">
+        <span>Ort</span>
+        <strong>{siteConfig.anniversary.location}</strong>
+        <p>
+          Weitere Informationen zum Ablauf folgen nach Bestätigung durch den
+          Verein.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="programme section" aria-labelledby="programme-title">
+    <div class="container">
+      <header class="programme__heading">
+        <p class="eyebrow">Das Jubiläumswochenende</p>
+        <h2 id="programme-title">Programm in Vorbereitung.</h2>
+        <p>
+          Die Inhalte bleiben bewusst offen, bis Ablauf, Zeiten und Angebote
+          verbindlich feststehen.
+        </p>
+      </header>
+      <div class="programme__slots">
+        {programmeSlots.map((slot, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <p>{slot}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-callout section" aria-labelledby="archive-title">
+    <div class="container archive-callout__grid">
+      <MediaPlaceholder
+        category="Erinnerungen"
+        description="Jubiläumsbilder und Rückblicke folgen"
+        aspect="wide"
+        tone="light"
+      />
+      <div>
+        <p class="eyebrow">Über das Wochenende hinaus</p>
+        <h2 id="archive-title">Was bleibt, wird Teil unserer Geschichte.</h2>
+        <p>
+          Nach dem Jubiläum wird diese Seite als Archiv weitergeführt – mit
+          Erinnerungen, Bildern und einem Rückblick auf 50 Jahre OMF.
+        </p>
+        <ButtonLink href="/verein" variant="secondary">
+          Mehr über den Verein
+        </ButtonLink>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .anniversary {
-    min-height: 35svh;
+  .jubilee-hero {
+    overflow: hidden;
+    color: var(--color-text-inverse);
+    background: var(--color-ink);
+  }
+  .jubilee-hero__grid {
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--space-7);
+  }
+  .jubilee-hero__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .jubilee-hero__years {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: var(--space-5) 0 var(--space-3);
+    color: var(--color-accent-light);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  .jubilee-hero__years i {
+    width: clamp(2rem, 8vw, 6rem);
+    height: 0.15rem;
+    background: currentColor;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(5rem, 12vw, 12rem);
+  }
+  .jubilee-hero__copy > p:last-of-type {
+    max-width: 34rem;
+    margin: var(--space-4) 0 var(--space-5);
+    color: rgb(247 245 239 / 0.72);
+  }
+  .jubilee-hero__visual {
+    position: relative;
+  }
+  .jubilee-hero__visual :global(.media-placeholder) {
+    min-height: 28rem;
+  }
+  .jubilee-hero__visual > span {
+    position: absolute;
+    right: var(--space-3);
+    bottom: var(--space-3);
+    color: rgb(247 245 239 / 0.55);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .anniversary-intro {
+    overflow: hidden;
     background: var(--color-paper-bright);
   }
-  h2 {
-    margin: var(--space-2) 0;
+  .anniversary-intro__grid {
+    display: grid;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  .anniversary-intro__number {
+    margin: 0;
     color: var(--color-accent);
     font-family: var(--font-display);
-    font-size: var(--step-3);
-    letter-spacing: -0.05em;
-    line-height: 0.95;
+    font-size: clamp(10rem, 28vw, 23rem);
+    font-weight: 800;
+    letter-spacing: -0.1em;
+    line-height: 0.65;
   }
-  .anniversary p:not(.eyebrow) {
-    margin: 0 0 var(--space-5);
+  .anniversary-intro h2,
+  .timeline h2,
+  .programme h2,
+  .archive-callout h2 {
+    max-width: 13ch;
+    margin: var(--space-3) 0 var(--space-4);
+    font-size: var(--step-3);
+  }
+  .anniversary-intro__grid > div > p:last-child,
+  .programme__heading > p:last-child,
+  .archive-callout p:not(.eyebrow) {
+    max-width: 43rem;
+    margin: 0;
     color: var(--color-muted);
+  }
+  .timeline {
+    color: var(--color-text-inverse);
+    background: var(--color-ink-soft);
+  }
+  .timeline__heading {
+    margin-bottom: var(--space-6);
+  }
+  .timeline ol {
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    list-style: none;
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.22);
+  }
+  .timeline li {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-5);
+    border-bottom: 0.0625rem solid rgb(247 245 239 / 0.22);
+  }
+  .timeline__year {
+    color: var(--color-accent-light);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  .timeline h3 {
+    margin: 0;
+    font-size: var(--step-1);
+  }
+  .timeline__content p {
+    max-width: 36rem;
+    margin: var(--space-2) 0 0;
+    color: var(--color-metal);
+  }
+  .timeline li :global(.media-placeholder) {
+    min-height: 15rem;
+    margin-top: var(--space-2);
+  }
+  .timeline :global(.placeholder-notice) {
+    color: var(--color-text-inverse);
+    background: rgb(247 245 239 / 0.08);
+    border-left-color: var(--color-accent-light);
+  }
+  .date-card {
+    color: var(--color-text-inverse);
+    background: var(--color-accent);
+  }
+  .date-card__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: end;
+  }
+  .date-card h2 {
+    max-width: 12ch;
+    margin: var(--space-3) 0;
+    font-size: var(--step-3);
+  }
+  .date-card p:not(.eyebrow) {
+    margin: 0;
+  }
+  .date-card__location {
+    padding-top: var(--space-4);
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.4);
+  }
+  .date-card__location span {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .date-card__location strong {
+    font-size: var(--step-1);
+  }
+  .date-card__location p {
+    max-width: 28rem;
+    margin-top: var(--space-2) !important;
+    color: rgb(247 245 239 / 0.72);
+  }
+  .programme {
+    background: var(--color-paper-bright);
+  }
+  .programme__heading {
+    max-width: 45rem;
+  }
+  .programme__slots {
+    display: grid;
+    gap: 0;
+    margin-top: var(--space-6);
+    border-top: 0.15rem solid var(--color-text);
+  }
+  .programme__slots article {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+    border-bottom: 0.0625rem solid var(--color-line);
+  }
+  .programme__slots span {
+    color: var(--color-accent);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  .programme__slots p {
+    margin: 0;
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .archive-callout {
+    background: var(--color-paper);
+  }
+  .archive-callout__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  .archive-callout :global(.media-placeholder) {
+    min-height: 20rem;
+  }
+  .archive-callout :global(.button-link) {
+    margin-top: var(--space-5);
+  }
+  @media (min-width: 56rem) {
+    .jubilee-hero__grid,
+    .archive-callout__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
+      gap: var(--space-8);
+      align-items: center;
+    }
+    .jubilee-hero__visual :global(.media-placeholder) {
+      min-height: 42rem;
+    }
+    .anniversary-intro__grid {
+      grid-template-columns: minmax(15rem, 0.65fr) 1fr;
+      gap: var(--space-8);
+    }
+    .timeline li {
+      grid-template-columns: 9rem minmax(0, 1fr) minmax(14rem, 0.7fr);
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .timeline li :global(.media-placeholder) {
+      grid-column: 3;
+      min-height: 13rem;
+      margin: 0;
+    }
+    .date-card__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.7fr);
+      gap: var(--space-8);
+    }
+    .programme__slots article {
+      grid-template-columns: 8rem 1fr;
+      gap: var(--space-6);
+    }
+    .archive-callout__grid > div {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .archive-callout__grid :global(.media-placeholder) {
+      grid-column: 2;
+      grid-row: 1;
+    }
   }
 </style>
