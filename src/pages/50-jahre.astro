@@ -1,6 +1,6 @@
 ---
 import ButtonLink from "../components/ButtonLink.astro";
-import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import ContentImage from "../components/ContentImage.astro";
 import PlaceholderNotice from "../components/PlaceholderNotice.astro";
 import { siteConfig } from "../config/site";
 import { historyEntries } from "../data/history";
@@ -40,14 +40,14 @@ const programmeSlots = [
         <ButtonLink href="#termin">Jubiläum vormerken</ButtonLink>
       </div>
       <div class="jubilee-hero__visual">
-        <MediaPlaceholder
-          category="Archivbild"
-          description="Historisches OMF-Foto wird ergänzt"
+        <ContentImage
+          src="/v9/assets/jubilaeum-hero.webp"
+          alt="Besucherinnen und Besucher bei einer Veranstaltung der Ottenauer Motorradfreunde"
+          caption="Gemeinsam feiern · OMF"
           aspect="portrait"
-          tone="dark"
           position="65% 40%"
+          loading="eager"
         />
-        <span aria-hidden="true">Murgtal · seit 1976</span>
       </div>
     </div>
   </section>
@@ -76,23 +76,20 @@ const programmeSlots = [
         <h2 id="timeline-title">Stationen der OMF</h2>
       </header>
       <ol>
-        {historyEntries.map((entry, index) => (
+        {historyEntries.map((entry) => (
           <li>
             <div class="timeline__year">{entry.year}</div>
             <div class="timeline__content">
               <h3>{entry.title}</h3>
               <p>{entry.description}</p>
             </div>
-            {index === 0 || index === historyEntries.length - 1 ? (
-              <MediaPlaceholder
-                category="Zeitdokument"
-                description={
-                  index === 0
-                    ? "Foto aus den frühen Vereinsjahren folgt"
-                    : "Jubiläumsfoto 2026 folgt"
-                }
-                aspect="landscape"
-                tone={index === 0 ? "light" : "dark"}
+            {entry.year === 2024 ? (
+              <ContentImage
+                src="/v9/assets/erste-hilfe-gruppenfoto.webp"
+                alt="Teilnehmende des Motorrad-Erste-Hilfe-Kurses der OMF"
+                caption="Motorrad-Erste-Hilfe-Kurs · 2024"
+                aspect="wide"
+                position="50% 45%"
               />
             ) : null}
           </li>
@@ -146,11 +143,12 @@ const programmeSlots = [
 
   <section class="archive-callout section" aria-labelledby="archive-title">
     <div class="container archive-callout__grid">
-      <MediaPlaceholder
-        category="Erinnerungen"
-        description="Jubiläumsbilder und Rückblicke folgen"
-        aspect="wide"
-        tone="light"
+      <ContentImage
+        src="/v9/assets/veranstaltung.webp"
+        alt="Besucherinnen und Besucher bei einer OMF-Veranstaltung"
+        caption="Vereinsleben in Ottenau"
+        aspect="square"
+        position="50% 45%"
       />
       <div>
         <p class="eyebrow">Über das Wochenende hinaus</p>
@@ -220,18 +218,8 @@ const programmeSlots = [
   .jubilee-hero__visual {
     position: relative;
   }
-  .jubilee-hero__visual :global(.media-placeholder) {
+  .jubilee-hero__visual :global(.content-image) {
     min-height: 28rem;
-  }
-  .jubilee-hero__visual > span {
-    position: absolute;
-    right: var(--space-3);
-    bottom: var(--space-3);
-    color: rgb(247 245 239 / 0.55);
-    font-size: 0.64rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
   .anniversary-intro {
     overflow: hidden;
@@ -301,7 +289,7 @@ const programmeSlots = [
     margin: var(--space-2) 0 0;
     color: var(--color-metal);
   }
-  .timeline li :global(.media-placeholder) {
+  .timeline li :global(.content-image) {
     min-height: 15rem;
     margin-top: var(--space-2);
   }
@@ -386,7 +374,7 @@ const programmeSlots = [
     gap: var(--space-6);
     align-items: center;
   }
-  .archive-callout :global(.media-placeholder) {
+  .archive-callout :global(.content-image) {
     min-height: 20rem;
   }
   .archive-callout :global(.button-link) {
@@ -399,7 +387,7 @@ const programmeSlots = [
       gap: var(--space-8);
       align-items: center;
     }
-    .jubilee-hero__visual :global(.media-placeholder) {
+    .jubilee-hero__visual :global(.content-image) {
       min-height: 42rem;
     }
     .anniversary-intro__grid {
@@ -411,7 +399,7 @@ const programmeSlots = [
       gap: var(--space-6);
       align-items: start;
     }
-    .timeline li :global(.media-placeholder) {
+    .timeline li :global(.content-image) {
       grid-column: 3;
       min-height: 13rem;
       margin: 0;
@@ -428,7 +416,7 @@ const programmeSlots = [
       grid-column: 1;
       grid-row: 1;
     }
-    .archive-callout__grid :global(.media-placeholder) {
+    .archive-callout__grid :global(.content-image) {
       grid-column: 2;
       grid-row: 1;
     }

@@ -1,0 +1,23 @@
+---
+import AnniversaryFeature from "../components/home/AnniversaryFeature.astro";
+import CoreThemes from "../components/home/CoreThemes.astro";
+import HomeHero from "../components/home/HomeHero.astro";
+import JoinSection from "../components/home/JoinSection.astro";
+import LatestPosts from "../components/home/LatestPosts.astro";
+import NextEventFeature from "../components/home/NextEventFeature.astro";
+import { getNextEvent } from "../data/events";
+import { getLatestPosts } from "../data/posts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const nextEvent = getNextEvent();
+const latestPosts = getLatestPosts(3);
+---
+
+<BaseLayout noIndex={true}>
+  <HomeHero />
+  <AnniversaryFeature />
+  <CoreThemes />
+  <NextEventFeature event={nextEvent} />
+  <LatestPosts posts={latestPosts} />
+  <JoinSection />
+</BaseLayout>

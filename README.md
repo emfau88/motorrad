@@ -2,18 +2,23 @@
 
 Neue offizielle Website der Ottenauer Motorradfreunde e. V. aus Gaggenau-Ottenau.
 
-**Testversion:** [https://emfau88.github.io/motorrad/](https://emfau88.github.io/motorrad/)
+## Versionen ansehen
+
+- **Hauptversion – v9-Prototyp:** [https://emfau88.github.io/motorrad/](https://emfau88.github.io/motorrad/)
+- **Bisheriger Astro-Entwurf:** [https://emfau88.github.io/motorrad/entwurf/](https://emfau88.github.io/motorrad/entwurf/)
+- **Jubiläumsseite des bisherigen Entwurfs:** [https://emfau88.github.io/motorrad/50-jahre/](https://emfau88.github.io/motorrad/50-jahre/)
 
 ## Status
 
-Das Projekt befindet sich im Aufbau. Der aktuelle Stand enthält das technische Fundament, das responsive Seitengerüst, die Startseite und alle grundlegenden Inhaltsseiten mit klar gekennzeichneten Beispielinhalten. Das CMS ist bewusst noch nicht Bestandteil dieser ersten Frontend-Phase.
+Die visuelle v9-Version ist die aktuelle Hauptseite. Sie wurde aus dem eigenständigen HTML-Prototyp in eine wartbarere Struktur mit ausgelagerten Assets, Styles und JavaScript überführt. Der vorherige mehrseitige Astro-Entwurf bleibt für Vergleich und Weiterentwicklung separat erreichbar. Das CMS ist weiterhin nicht Bestandteil dieser Frontend-Phase.
 
 ## Technik
 
 - Astro mit TypeScript
-- statische Ausgabe mit möglichst wenig clientseitigem JavaScript
+- statische Ausgabe mit wenig clientseitigem JavaScript
 - zentrale Design-Tokens in CSS
-- Inhalte getrennt von Layout und Komponenten
+- v9-Bilder, Schriften, Styles und Verhalten als separate Assets
+- redaktionelle Listen der Hauptseite direkt in Astro-Datenstrukturen
 - strukturierte Mock-Daten als spätere CMS-Schnittstelle
 
 ## Lokal starten
@@ -37,4 +42,4 @@ npm run build
 
 ## Noch zu bestätigen
 
-Die endgültige Domain, Kontaktdaten, Anschrift, Vorstandsmitglieder, rechtlichen Texte, das Vereinslogo, die Akzentfarbe und sämtliche echten Bilder werden erst nach Bestätigung durch den Verein veröffentlicht.
+Die endgültige Domain, rechtlichen Texte sowie sämtliche Veranstaltungsangaben sollten vor der offiziellen Veröffentlichung durch den Verein bestätigt werden.

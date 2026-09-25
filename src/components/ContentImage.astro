@@ -1,0 +1,79 @@
+---
+import { siteUrl } from "../utils/urls";
+
+type Props = {
+  src: string;
+  alt: string;
+  caption?: string;
+  aspect?: "portrait" | "landscape" | "square" | "wide";
+  position?: string;
+  loading?: "eager" | "lazy";
+};
+
+const {
+  src,
+  alt,
+  caption,
+  aspect = "landscape",
+  position = "50% 50%",
+  loading = "lazy",
+} = Astro.props;
+---
+
+<figure class:list={["content-image", `content-image--${aspect}`]}>
+  <img
+    src={siteUrl(src)}
+    alt={alt}
+    loading={loading}
+    decoding="async"
+    style={`object-position: ${position}`}
+  />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .content-image {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    background: var(--color-ink);
+  }
+
+  .content-image--portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .content-image--landscape {
+    aspect-ratio: 4 / 3;
+  }
+
+  .content-image--square {
+    aspect-ratio: 1;
+  }
+
+  .content-image--wide {
+    aspect-ratio: 16 / 9;
+  }
+
+  .content-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  figcaption {
+    position: absolute;
+    right: var(--space-3);
+    bottom: var(--space-3);
+    max-width: calc(100% - 2 * var(--space-3));
+    padding: 0.3rem 0.5rem;
+    color: var(--color-text-inverse);
+    background: rgb(17 18 16 / 0.78);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+</style>

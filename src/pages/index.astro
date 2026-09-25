@@ -1,23 +1,392 @@
 ---
-import AnniversaryFeature from "../components/home/AnniversaryFeature.astro";
-import CoreThemes from "../components/home/CoreThemes.astro";
-import HomeHero from "../components/home/HomeHero.astro";
-import JoinSection from "../components/home/JoinSection.astro";
-import LatestPosts from "../components/home/LatestPosts.astro";
-import NextEventFeature from "../components/home/NextEventFeature.astro";
-import { getNextEvent } from "../data/events";
-import { getLatestPosts } from "../data/posts";
-import BaseLayout from "../layouts/BaseLayout.astro";
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const asset = (file: string) => `${basePath}v9/assets/${file}`;
 
-const nextEvent = getNextEvent();
-const latestPosts = getLatestPosts(3);
+const navigation = [
+  { href: "#jubilaeum", label: "Jubiläum" },
+  { href: "#aktuell", label: "Aktuelles" },
+  { href: "#geschichte", label: "Verein" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
+const newsItems = [
+  {
+    image: "nachwuchs-presseausschnitt.webp",
+    alt: "Presseausschnitt Nachwuchs gesucht",
+    category: "Vereinsaufruf",
+    date: "Dezember 2024",
+    title: "Nachwuchs gesucht",
+    text: "Der 1976 gegründete Verein sucht jüngere Mitglieder. Stammtisch ist jeden zweiten Donnerstag, dazu gibt es gemeinsame Ausfahrten bis hin zur einwöchigen Alpentour.",
+  },
+  {
+    image: "erste-hilfe-gruppenfoto.webp",
+    alt: "OMF-Gruppenfoto beim Erste-Hilfe-Kurs",
+    category: "Sicherheit",
+    date: "Januar 2024",
+    title: "Erste-Hilfe-Kurs",
+    text: "14 Teilnehmende trainierten Seitenlagerung, Helmabnahme und den Umgang mit dem Defibrillator.",
+  },
+  {
+    image: "veranstaltung.webp",
+    alt: "Besucher auf einer OMF-Veranstaltung",
+    category: "Veranstaltung",
+    date: "1. Mai",
+    title: "Maihockete",
+    text: "Die traditionelle Hockete auf dem Vereinsgelände gehört zu den wiederkehrenden öffentlichen Terminen der Ottenauer Motorradfreunde.",
+  },
+];
+
+const history = [
+  {
+    year: 1976,
+    title: "Gründung",
+    text: "Die Ottenauer Motorradfreunde werden gegründet.",
+  },
+  {
+    year: 2016,
+    title: "40 Jahre OMF",
+    text: "Zum 40-jährigen Bestehen wurden Jubiläumsfeier und Murgtalausfahrt angekündigt.",
+  },
+  {
+    year: 2022,
+    title: "3. Motorradausstellung",
+    text: "Für Ende Oktober wurden rund 80 Zweiräder und Raritäten in der Merkurhalle angekündigt.",
+  },
+  {
+    year: 2024,
+    title: "Erste-Hilfe-Kurs",
+    text: "Ein spezieller Kurs für Motorradunfälle wurde gemeinsam mit dem DRK-Ortsverein durchgeführt.",
+  },
+  {
+    year: 2026,
+    title: "50 Jahre OMF",
+    text: "Das Jubiläum wird im Oktober in der Merkurhalle Ottenau gefeiert.",
+  },
+];
 ---
 
-<BaseLayout noIndex={true}>
-  <HomeHero />
-  <AnniversaryFeature />
-  <CoreThemes />
-  <NextEventFeature event={nextEvent} />
-  <LatestPosts posts={latestPosts} />
-  <JoinSection />
-</BaseLayout>
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0f1110" />
+    <meta
+      name="description"
+      content="Ottenauer Motorradfreunde e. V. – Vereinsleben, Termine, Aktuelles und 50 Jahre OMF."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content="Ottenauer Motorradfreunde e. V." />
+    <meta
+      property="og:description"
+      content="Vereinsleben, Termine, Aktuelles und 50 Jahre OMF."
+    />
+    <meta property="og:image" content={asset("veranstaltung.webp")} />
+    <link rel="canonical" href="https://emfau88.github.io/motorrad/" />
+    <link rel="icon" href={asset("omf-logo.webp")} />
+    <link rel="stylesheet" href={`${basePath}v9/styles/main.css`} />
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+    <script is:inline src={`${basePath}v9/scripts/main.js`} defer></script>
+    <title>Ottenauer Motorradfreunde e. V.</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">
+      Zum Inhalt springen
+    </a>
+
+    <header class="site-header" id="header">
+      <div class="wrap nav">
+        <a class="brand" href="#top" aria-label="Startseite OMF">
+          <span class="brand-badge">
+            <img src={asset("omf-logo.webp")} alt="" width="256" height="256" />
+          </span>
+          <span class="brand-copy">
+            <strong>Ottenauer Motorradfreunde</strong>
+            <span>Gaggenau-Ottenau · seit 1976</span>
+          </span>
+        </a>
+        <nav class="navlinks" aria-label="Hauptnavigation">
+          {navigation.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </nav>
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          type="button"
+          aria-label="Menü öffnen"
+          aria-expanded="false"
+          aria-controls="drawer"
+        >
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <nav aria-label="Mobile Hauptnavigation">
+        {navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+      <small>Ottenauer Motorradfreunde e. V.</small>
+    </div>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="wrap hero-content">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">Ottenauer Motorradfreunde e. V.</div>
+              <h1 class="display" id="hero-title">
+                Gemeinsam
+                <br />
+                unterwegs.
+              </h1>
+              <p class="hero-copy">
+                Motorräder, gemeinsame Touren, Veranstaltungen und ein
+                Vereinsleben, das seit Jahrzehnten verbindet – zuhause in
+                Ottenau, unterwegs im Murgtal und weit darüber hinaus.
+              </p>
+              <div class="btnrow hero-actions">
+                <a class="btn primary" href="#jubilaeum">
+                  50 Jahre OMF
+                </a>
+                <a class="btn ghost" href="#kontakt">
+                  Mitfahren & Kontakt
+                </a>
+              </div>
+            </div>
+            <aside class="hero-panel">
+              <div class="eyebrow">Jubiläumsjahr</div>
+              <h2>1976 — 2026</h2>
+              <p>
+                2026 feiern die Ottenauer Motorradfreunde ihr 50-jähriges
+                Bestehen.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section dark"
+        id="jubilaeum"
+        aria-labelledby="event-title"
+      >
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">Nächster großer Termin</div>
+              <h2 class="display" id="event-title">
+                50 Jahre OMF
+              </h2>
+            </div>
+          </div>
+          <article class="card dark event-box reveal">
+            <div
+              class="event-media"
+              role="img"
+              aria-label="Besucherinnen und Besucher bei einer OMF-Veranstaltung"
+            ></div>
+            <div class="event-main">
+              <div class="pill">
+                <span class="dot"></span> Jubiläumsfest
+              </div>
+              <h3>
+                <time datetime="2026-10-17">17.–18. Oktober 2026</time>
+                <br />
+                Merkurhalle Ottenau
+              </h3>
+              <div class="event-meta">
+                <span>🕥 im Kalender ab 10:30 Uhr</span>
+                <span>📍 Merkurhalle Ottenau</span>
+              </div>
+              <div
+                class="countdown"
+                id="countdown"
+                data-target="2026-10-17T10:30:00+02:00"
+                aria-label="Zeit bis zum Jubiläumsfest"
+              ></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="aktuell" aria-labelledby="news-title">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">Aktuelles</div>
+              <h2 class="display" id="news-title">
+                Neues aus dem Verein
+              </h2>
+            </div>
+          </div>
+          <div class="news-grid">
+            {newsItems.map((item, index) => (
+              <article
+                class:list={["story", "reveal", { featured: index === 0 }]}
+              >
+                <div class="thumb">
+                  <img
+                    src={asset(item.image)}
+                    alt={item.alt}
+                    width={index === 0 ? 549 : index === 1 ? 480 : 512}
+                    height={index === 0 ? 482 : index === 1 ? 260 : 512}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="story-meta">
+                  <span>{item.category}</span>
+                  <span>{item.date}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section dark"
+        id="geschichte"
+        aria-labelledby="history-title"
+      >
+        <div class="wrap timeline reveal">
+          <div class="intro-col">
+            <div class="eyebrow">Verein & Geschichte</div>
+            <h2 class="display" id="history-title">
+              Seit
+              <br />
+              1976.
+            </h2>
+          </div>
+          <div class="timeline-list">
+            {history.map((item) => (
+              <div class="time-row">
+                <div class="year">{item.year}</div>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section dark"
+        id="kontakt"
+        aria-labelledby="contact-title"
+      >
+        <div class="wrap contact-grid reveal">
+          <div class="card dark join-box">
+            <div class="eyebrow">Mitfahren & kennenlernen</div>
+            <h2 class="display" id="contact-title">
+              Du fährst
+              <br />
+              Motorrad?
+            </h2>
+            <p>
+              Wer Interesse hat, schaut einfach beim Stammtisch im Clubhaus
+              vorbei. Vorab kannst du auch telefonisch oder per WhatsApp Kontakt
+              aufnehmen.
+            </p>
+            <div class="meeting">
+              <div class="item">
+                <b>Stammtisch</b>
+                <span>Jeden 2. Donnerstag</span>
+              </div>
+              <div class="item">
+                <b>Beginn</b>
+                <span>Ab ca. 19 Uhr</span>
+              </div>
+            </div>
+          </div>
+          <div class="card dark join-box">
+            <div class="eyebrow">Kontakt</div>
+            <div class="contact-list">
+              <div class="contact">
+                <div>
+                  <strong>1. Vorstand</strong>
+                  <span>Paul Riedinger</span>
+                </div>
+                <div>
+                  <a href="tel:+491727356667">0172 7356667</a>
+                  <a href="mailto:paul.riedinger@matsches.com">
+                    paul.riedinger@matsches.com
+                  </a>
+                </div>
+              </div>
+              <div class="contact">
+                <div>
+                  <strong>Kassierer</strong>
+                  <span>Matthias Lang</span>
+                </div>
+                <div>
+                  <a href="tel:+4915731584556">0157 31584556</a>
+                  <a href="mailto:1204matsches@web.de">1204matsches@web.de</a>
+                </div>
+              </div>
+              <div class="contact">
+                <div>
+                  <strong>Vereinsgelände</strong>
+                  <span>Berliner Straße 4 / Berliner Brücke</span>
+                </div>
+                <div>
+                  <span>76571 Gaggenau-Ottenau</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-mark">
+              <span class="footer-badge">
+                <img
+                  src={asset("omf-logo.webp")}
+                  alt=""
+                  width="256"
+                  height="256"
+                  loading="lazy"
+                />
+              </span>
+              <div>
+                <div class="footer-title">OMF</div>
+                <p>Ottenauer Motorradfreunde e. V.</p>
+              </div>
+            </div>
+          </div>
+          <nav aria-label="Navigation im Fußbereich">
+            <h2>Navigation</h2>
+            {navigation.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))}
+          </nav>
+          <div class="footer-bottom">
+            Ottenauer Motorradfreunde e. V. · Gaggenau-Ottenau
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
