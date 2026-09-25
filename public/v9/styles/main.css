@@ -377,8 +377,9 @@ button {
 .hero-media {
   position: absolute;
   inset: 0;
-  background: url("../assets/jubilaeum-hero.webp") center/cover no-repeat;
-  filter: saturate(0.95) brightness(0.78);
+  background: url("../assets/hero-club-gathering-v2.jpg") center 46%/cover no-repeat;
+  filter: saturate(0.78) brightness(0.68) blur(2px);
+  transform: scale(1.015);
 }
 .hero-media:after {
   content: "";
@@ -403,7 +404,7 @@ button {
   position: relative;
   z-index: 2;
   width: min(var(--max), calc(100% - var(--pad) * 2));
-  padding: 124px 0 46px;
+  padding: 124px 0 156px;
 }
 .hero-accents {
   position: absolute;
