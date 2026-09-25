@@ -220,7 +220,7 @@ button {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 .nav {
-  height: 74px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -229,7 +229,7 @@ button {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   color: #fff;
   min-width: 0;
 }
@@ -246,10 +246,11 @@ button {
   overflow: hidden;
 }
 .brand-badge {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  width: 66px;
+  height: 66px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
   font-size: 1rem;
   flex: 0 0 auto;
 }
@@ -257,7 +258,7 @@ button {
 .footer-badge img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 .footer-badge {
@@ -267,7 +268,7 @@ button {
   display: block;
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1.08rem;
   letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
@@ -276,7 +277,7 @@ button {
 .brand-copy span {
   display: block;
   color: #d3d7d2;
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-top: 4px;
@@ -455,7 +456,7 @@ button {
 .anniversary-seal {
   position: relative;
   display: flex;
-  width: 250px;
+  width: 270px;
   aspect-ratio: 1;
   justify-self: center;
   align-items: stretch;
@@ -478,17 +479,16 @@ button {
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 25px;
+  padding: 44px;
   color: #fff;
   text-align: center;
 }
 .anniversary-seal__logo {
-  width: 62px;
-  height: 62px;
-  margin: 5px 0 8px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
+  width: 108px;
+  height: 86px;
+  margin: 5px 0 7px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.38));
 }
 .anniversary-seal__kicker,
 .anniversary-seal__content > span:last-child {
@@ -506,7 +506,7 @@ button {
 .anniversary-seal strong {
   margin-bottom: 3px;
   font-family: var(--display);
-  font-size: 1.7rem;
+  font-size: 1.95rem;
   letter-spacing: 0.01em;
   line-height: 1;
   text-transform: uppercase;
@@ -1146,8 +1146,18 @@ footer a {
     margin-bottom: 28px;
   }
   .anniversary-seal {
-    width: 205px;
+    width: 220px;
     margin: 22px auto 0;
+  }
+  .anniversary-seal__content {
+    padding: 34px;
+  }
+  .anniversary-seal__logo {
+    width: 88px;
+    height: 70px;
+  }
+  .anniversary-seal strong {
+    font-size: 1.65rem;
   }
   .hero-panel {
     max-width: 560px;
@@ -1180,12 +1190,12 @@ footer a {
     padding: 72px 0;
   }
   .nav {
-    height: 68px;
+    height: 78px;
   }
   .brand-badge {
-    width: 38px;
-    height: 38px;
-    font-size: 0.92rem;
+    width: 52px;
+    height: 52px;
+    font-size: 1rem;
   }
   .brand-copy strong {
     font-size: 0.84rem;

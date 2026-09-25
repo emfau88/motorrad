@@ -3,6 +3,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
+const assetRevision = "20260925-2";
 
 const navigation = [
   { href: "#jubilaeum", label: "Jubiläum" },
@@ -90,11 +91,18 @@ const history = [
     <meta property="og:image" content={asset("veranstaltung.webp")} />
     <link rel="canonical" href="https://emfau88.github.io/motorrad/" />
     <link rel="icon" href={asset("omf-logo.webp")} />
-    <link rel="stylesheet" href={`${basePath}v9/styles/main.css`} />
+    <link
+      rel="stylesheet"
+      href={`${basePath}v9/styles/main.css?v=${assetRevision}`}
+    />
     <script is:inline>
       document.documentElement.classList.add("js");
     </script>
-    <script is:inline src={`${basePath}v9/scripts/main.js`} defer></script>
+    <script
+      is:inline
+      src={`${basePath}v9/scripts/main.js?v=${assetRevision}`}
+      defer
+    ></script>
     <title>Ottenauer Motorradfreunde e. V.</title>
   </head>
   <body>
