@@ -1,0 +1,161 @@
+---
+import PageHero from "../../components/PageHero.astro";
+import PlaceholderNotice from "../../components/PlaceholderNotice.astro";
+import { getPostsByCategory } from "../../data/posts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatFullDate } from "../../utils/dates";
+import { siteUrl } from "../../utils/urls";
+
+const categories = [
+  { key: "touren", label: "Touren" },
+  { key: "verein", label: "Verein" },
+  { key: "veranstaltungen", label: "Veranstaltungen" },
+] as const;
+const posts = getPostsByCategory();
+---
+
+<BaseLayout
+  title="Aktuelles"
+  description="Aktuelle Geschichten, Touren und Veranstaltungen der Ottenauer Motorradfreunde."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Aktuelles"
+    title="Was bei uns passiert."
+    intro="Geschichten aus dem Vereinsleben, von gemeinsamen Ausfahrten und besonderen Veranstaltungen."
+    imageLabel="Aktuelles"
+    imageDescription="Vereinsfoto für aktuelle Beiträge folgt"
+  />
+
+  <section class="posts section" aria-labelledby="posts-title">
+    <div class="container">
+      <h2 id="posts-title">Beiträge</h2>
+      <nav class="category-nav" aria-label="Beitragskategorien">
+        {categories.map((category) => (
+          <a href={`#${category.key}`}>{category.label}</a>
+        ))}
+      </nav>
+      <PlaceholderNotice>
+        Die aktuellen Beiträge sind bewusst als Beispielinhalte angelegt. Echte
+        Vereinsnachrichten und Bilder werden nach Freigabe ergänzt.
+      </PlaceholderNotice>
+      <div class="posts__list">
+        {categories.map((category) => {
+          const categoryPosts = posts.filter(
+            (post) => post.category === category.key,
+          );
+          return (
+            <section id={category.key} class="post-category">
+              <header>
+                <p class="eyebrow">{category.label}</p>
+              </header>
+              {categoryPosts.map((post) => (
+                <article>
+                  <span>
+                    {post.placeholder
+                      ? "Beispielinhalt"
+                      : formatFullDate(post.publishedAt)}
+                  </span>
+                  <div>
+                    <h3>
+                      <a href={siteUrl(`/aktuelles/${post.slug}`)}>
+                        {post.title}
+                      </a>
+                    </h3>
+                    <p>{post.excerpt}</p>
+                    <a href={siteUrl(`/aktuelles/${post.slug}`)}>
+                      Beitrag lesen
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </section>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .posts {
+    background: var(--color-paper-bright);
+  }
+  h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+  .category-nav a {
+    padding: 0.45rem 0.7rem;
+    border: 0.0625rem solid var(--color-line);
+    font-size: var(--step--1);
+    font-weight: 750;
+    text-decoration: none;
+  }
+  .category-nav a:hover {
+    color: var(--color-text-inverse);
+    background: var(--color-ink);
+  }
+  .posts__list {
+    display: grid;
+    gap: var(--space-7);
+    margin-top: var(--space-7);
+  }
+  .post-category {
+    scroll-margin-top: var(--header-height);
+  }
+  .post-category > header {
+    padding-bottom: var(--space-3);
+    border-bottom: 0.15rem solid var(--color-text);
+  }
+  .post-category article {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-5);
+    border-bottom: 0.0625rem solid var(--color-line);
+  }
+  article > span {
+    color: var(--color-muted);
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  h3 a {
+    text-decoration-color: transparent;
+  }
+  h3 a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  article p {
+    max-width: 43rem;
+    margin: var(--space-2) 0;
+    color: var(--color-muted);
+  }
+  article div > a {
+    color: var(--color-accent-dark);
+    font-weight: 800;
+  }
+  @media (min-width: 48rem) {
+    .post-category article {
+      grid-template-columns: 10rem 1fr;
+      gap: var(--space-6);
+    }
+  }
+</style>

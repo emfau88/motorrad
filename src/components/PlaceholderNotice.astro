@@ -1,0 +1,35 @@
+---
+type Props = {
+  title?: string;
+  children: string;
+};
+
+const { title = "Hinweis zum aktuellen Stand" } = Astro.props;
+---
+
+<aside class="placeholder-notice" aria-label={title}>
+  <strong>{title}</strong>
+  <p>
+    <slot />
+  </p>
+</aside>
+
+<style>
+  .placeholder-notice {
+    max-width: 58rem;
+    padding: var(--space-4);
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--color-accent-light) 20%, transparent);
+    border-left: 0.25rem solid var(--color-accent);
+  }
+
+  strong {
+    font-size: var(--step--1);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: var(--space-1) 0 0;
+  }
+</style>

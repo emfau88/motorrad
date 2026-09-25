@@ -50,6 +50,8 @@ Status: abgeschlossen
 - Mitmachen und Kontakt
 - Impressum und Datenschutz als klar markierte Inhaltsplatzhalter
 
+Status: abgeschlossen
+
 ## Block 6 – 50 Jahre OMF
 
 - eigenständige Jubiläums-Landingpage

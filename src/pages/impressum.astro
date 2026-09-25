@@ -1,0 +1,35 @@
+---
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Impressum"
+  description="Impressum der Ottenauer Motorradfreunde."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Rechtliches"
+    title="Impressum"
+    intro="Die rechtlich erforderlichen Angaben werden vor der Veröffentlichung durch den Verein ergänzt und geprüft."
+    imageLabel="Impressum"
+    imageDescription="Dokumentenplatzhalter"
+  />
+  <section class="legal section">
+    <div class="container">
+      <PlaceholderNotice title="Rechtlicher Platzhalter">
+        Diese Seite ist noch kein vollständiges Impressum. Verantwortliche
+        Person, Anschrift, Kontakt und Registerangaben dürfen erst nach
+        verbindlicher Prüfung veröffentlicht werden.
+      </PlaceholderNotice>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    min-height: 35svh;
+    background: var(--color-paper-bright);
+  }
+</style>

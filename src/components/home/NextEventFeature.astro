@@ -20,7 +20,7 @@ const { event } = Astro.props;
           <h2 id="next-event-title">{event.title}</h2>
           <p>{event.location}</p>
         </div>
-        <ButtonLink href={`/termine#${event.slug}`} variant="light">
+        <ButtonLink href={`/termine#event-${event.slug}`} variant="light">
           Details ansehen
         </ButtonLink>
       </article>

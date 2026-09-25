@@ -1,0 +1,35 @@
+---
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Anfahrt"
+  description="Anfahrt zu den Ottenauer Motorradfreunden."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Anfahrt"
+    title="Zuhause in Ottenau."
+    intro="Eine genaue Anschrift und Hinweise zur Anfahrt veröffentlicht der Verein nach Bestätigung."
+    imageLabel="Anfahrt"
+    imageDescription="Karte oder Clubhausfoto folgt"
+  />
+  <section class="directions section">
+    <div class="container">
+      <PlaceholderNotice title="Anfahrt in Vorbereitung">
+        Aus Datenschutz- und Aktualitätsgründen zeigt die Testversion noch keine
+        Adresse oder Karten-Einbettung. Beide Angaben folgen nach Freigabe durch
+        den Verein.
+      </PlaceholderNotice>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .directions {
+    min-height: 35svh;
+    background: var(--color-paper-bright);
+  }
+</style>

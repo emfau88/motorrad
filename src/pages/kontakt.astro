@@ -1,0 +1,94 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Kontakt"
+  description="Kontaktmöglichkeiten der Ottenauer Motorradfreunde."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Kontakt"
+    title="Wir freuen uns aufs Kennenlernen."
+    intro="Die Kontaktmöglichkeiten der Ottenauer Motorradfreunde werden hier nach Vereinsfreigabe ergänzt."
+    imageLabel="Kontakt"
+    imageDescription="Clubhaus- oder Gruppenfoto folgt"
+  />
+  <section class="contact section">
+    <div class="container contact__grid">
+      <div>
+        <p class="eyebrow">Direktkontakt</p>
+        <h2>Kontakt wird ergänzt.</h2>
+        <p>
+          Damit keine unbestätigten Kontaktdaten veröffentlicht werden, zeigt
+          diese Testversion bewusst noch keine E-Mail-Adresse, Telefonnummer
+          oder Postanschrift.
+        </p>
+      </div>
+      <PlaceholderNotice title="Angaben in Abstimmung">
+        Der Verein ergänzt die freigegebenen Kontaktwege in einem späteren
+        Arbeitsschritt.
+      </PlaceholderNotice>
+    </div>
+  </section>
+  <section class="contact-next section">
+    <div class="container">
+      <p>Du möchtest den Verein erst einmal persönlich kennenlernen?</p>
+      <ButtonLink href="/mitmachen" variant="light">
+        Zu Mitmachen
+      </ButtonLink>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    background: var(--color-paper-bright);
+  }
+  .contact__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: end;
+  }
+  h2 {
+    margin: var(--space-2) 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+  .contact__grid > div > p:not(.eyebrow) {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--color-muted);
+  }
+  .contact-next {
+    color: var(--color-text-inverse);
+    background: var(--color-accent);
+  }
+  .contact-next .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+  .contact-next p {
+    max-width: 38rem;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  @media (min-width: 55rem) {
+    .contact__grid {
+      grid-template-columns: 1fr 0.8fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

@@ -56,3 +56,14 @@ export function getLatestPosts(limit = 3): Post[] {
     )
     .slice(0, limit);
 }
+
+export function getPostsByCategory(category?: Post["category"]): Post[] {
+  const orderedPosts = getLatestPosts(posts.length);
+  return category
+    ? orderedPosts.filter((post) => post.category === category)
+    : orderedPosts;
+}
+
+export function getPostBySlug(slug: string): Post | undefined {
+  return posts.find((post) => post.slug === slug);
+}

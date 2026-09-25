@@ -13,6 +13,7 @@ Alle optionalen oder unbestätigten Angaben bleiben sichtbar als Platzhalter mar
 - `coverImage`
 - `gallery`
 - `featured`
+- `placeholder` zur sichtbaren Kennzeichnung von Beispielinhalten
 
 ## Termin
 
@@ -37,6 +38,7 @@ Die Startseite filtert Termine anhand des End- oder Startdatums und zeigt den ch
 - `description`
 - `coverImage`
 - `images`
+- `placeholder` zur sichtbaren Kennzeichnung von Beispielalben
 
 ## Vereinsgeschichte
 

@@ -1,0 +1,35 @@
+---
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Datenschutz"
+  description="Datenschutzhinweise der Ottenauer Motorradfreunde."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Rechtliches"
+    title="Datenschutz"
+    intro="Die Datenschutzhinweise werden passend zu den tatsächlich eingesetzten Diensten und Kontaktwegen ergänzt."
+    imageLabel="Datenschutz"
+    imageDescription="Dokumentenplatzhalter"
+  />
+  <section class="legal section">
+    <div class="container">
+      <PlaceholderNotice title="Rechtlicher Platzhalter">
+        Diese Seite enthält noch keine vollständige Datenschutzerklärung. Vor
+        dem öffentlichen Start wird sie anhand der endgültigen Funktionen,
+        Inhalte und Dienstleister erstellt und geprüft.
+      </PlaceholderNotice>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    min-height: 35svh;
+    background: var(--color-paper-bright);
+  }
+</style>

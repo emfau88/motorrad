@@ -27,7 +27,9 @@ export function formatFullDate(date: string): string {
   return fullDateFormatter.format(utcDate(date));
 }
 
-export function formatEventDate(event: Event): string {
+export function formatEventDate(
+  event: Pick<Event, "startDate" | "endDate">,
+): string {
   if (!event.endDate || event.endDate === event.startDate) {
     return formatFullDate(event.startDate);
   }

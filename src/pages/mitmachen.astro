@@ -1,0 +1,146 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import { siteConfig } from "../config/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Mitmachen"
+  description="Die Ottenauer Motorradfreunde kennenlernen und mitfahren."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Mitfahren · Mitmachen"
+    title="Einfach mal vorbeikommen."
+    intro="Du fährst Motorrad und suchst Menschen für gemeinsame Kilometer und ein lebendiges Vereinsleben? Dann lern die OMF unverbindlich kennen."
+    imageLabel="Mitmachen"
+    imageDescription="Gruppenfoto zum Kennenlernen folgt"
+  />
+  <section class="steps section">
+    <div class="container">
+      <p class="eyebrow">Kennenlernen</p>
+      <h2>So geht’s los.</h2>
+      <ol>
+        <li>
+          <span>01</span>
+          <div>
+            <h3>Kontakt aufnehmen</h3>
+            <p>Schreib uns, sobald die Kontaktangaben veröffentlicht sind.</p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <h3>Vorbeikommen</h3>
+            <p>
+              Lern die Gemeinschaft bei einem Treffen oder einer Ausfahrt
+              kennen.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <h3>Entscheiden</h3>
+            <p>Alles Weitere klärst du persönlich und ganz ohne Druck.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+  <section class="meeting section">
+    <div class="container meeting__grid">
+      <div>
+        <p class="eyebrow">Stammtisch</p>
+        <h2>{siteConfig.regularsTable.schedule}</h2>
+        <p>
+          {siteConfig.regularsTable.time}
+          <br />
+          {siteConfig.regularsTable.location}
+        </p>
+      </div>
+      <div>
+        <PlaceholderNotice title="Termin bitte bestätigen">
+          Die Stammtischangabe wird vor der Veröffentlichung noch durch den
+          Verein geprüft.
+        </PlaceholderNotice>
+        <ButtonLink href="/kontakt">Kontaktmöglichkeiten</ButtonLink>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .steps {
+    background: var(--color-paper-bright);
+  }
+  h2 {
+    margin: var(--space-2) 0 var(--space-6);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+  ol {
+    display: grid;
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 0.0625rem solid var(--color-line);
+  }
+  li > span {
+    color: var(--color-accent);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1;
+  }
+  li p {
+    margin: var(--space-2) 0 0;
+    color: var(--color-muted);
+  }
+  .meeting {
+    color: var(--color-text-inverse);
+    background: var(--color-ink-soft);
+  }
+  .meeting__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: end;
+  }
+  .meeting h2 {
+    max-width: 11ch;
+    margin-bottom: var(--space-3);
+  }
+  .meeting > div > p:not(.eyebrow) {
+    margin: 0;
+    color: var(--color-metal);
+  }
+  .meeting :global(.placeholder-notice) {
+    margin-bottom: var(--space-5);
+  }
+  @media (min-width: 55rem) {
+    ol {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .meeting__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

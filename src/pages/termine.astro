@@ -1,0 +1,136 @@
+---
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import { getPastEvents, getUpcomingEvents } from "../data/events";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatEventDate } from "../utils/dates";
+
+const upcomingEvents = getUpcomingEvents();
+const pastEvents = getPastEvents();
+---
+
+<BaseLayout
+  title="Termine"
+  description="Termine und Veranstaltungen der Ottenauer Motorradfreunde."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Kalender"
+    title="Gemeinsam planen."
+    intro="Hier stehen kommende Veranstaltungen und später auch die Rückblicke vergangener Termine."
+    imageLabel="Termine"
+    imageDescription="Veranstaltungsfoto der OMF folgt"
+  />
+  <section class="events section" aria-labelledby="upcoming-title">
+    <div class="container">
+      <div class="events__header">
+        <p class="eyebrow">Kommende Termine</p>
+        <h2 id="upcoming-title">Als Nächstes</h2>
+      </div>
+      {upcomingEvents.length ? (
+        <div class="events__list">
+          {upcomingEvents.map((event) => (
+            <article id={`event-${event.slug}`}>
+              <time datetime={event.startDate}>{formatEventDate(event)}</time>
+              <div>
+                <h3>{event.title}</h3>
+                <p>{event.description}</p>
+              </div>
+              <span>{event.location}</span>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <PlaceholderNotice title="Neue Termine folgen">
+          Sobald Termine bestätigt sind, erscheinen sie hier in chronologischer
+          Reihenfolge.
+        </PlaceholderNotice>
+      )}
+    </div>
+  </section>
+  <section class="events events--past section" aria-labelledby="past-title">
+    <div class="container">
+      <div class="events__header">
+        <p class="eyebrow">Archiv</p>
+        <h2 id="past-title">Vergangene Termine</h2>
+      </div>
+      {pastEvents.length ? (
+        <div class="events__list">
+          {pastEvents.map((event) => (
+            <article>
+              <time datetime={event.startDate}>{formatEventDate(event)}</time>
+              <div>
+                <h3>{event.title}</h3>
+                <p>{event.description}</p>
+              </div>
+              <span>{event.location}</span>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <PlaceholderNotice title="Archiv wird aufgebaut">
+          Vergangene Termine und Rückblicke werden mit bestätigten Angaben
+          ergänzt.
+        </PlaceholderNotice>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .events {
+    background: var(--color-paper-bright);
+  }
+  .events--past {
+    background: var(--color-paper);
+  }
+  .events__header h2 {
+    margin: var(--space-2) 0 var(--space-6);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+  .events__list {
+    border-top: 0.15rem solid var(--color-text);
+  }
+  article {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-5);
+    border-bottom: 0.0625rem solid var(--color-line);
+    scroll-margin-top: var(--header-height);
+  }
+  time {
+    color: var(--color-accent);
+    font-size: var(--step-1);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  article p {
+    max-width: 42rem;
+    margin: var(--space-2) 0 0;
+    color: var(--color-muted);
+  }
+  article > span {
+    font-size: var(--step--1);
+    font-weight: 700;
+  }
+  @media (min-width: 55rem) {
+    article {
+      grid-template-columns: minmax(12rem, 0.55fr) minmax(0, 1fr) minmax(
+          10rem,
+          0.4fr
+        );
+      gap: var(--space-6);
+      align-items: start;
+    }
+  }
+</style>

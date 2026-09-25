@@ -31,3 +31,18 @@ export function getUpcomingEvents(now = new Date()): Event[] {
 export function getNextEvent(now = new Date()): Event | undefined {
   return getUpcomingEvents(now)[0];
 }
+
+export function getPastEvents(now = new Date()): Event[] {
+  const startOfToday = new Date(now);
+  startOfToday.setHours(0, 0, 0, 0);
+
+  return events
+    .filter(
+      (event) => new Date(event.endDate ?? event.startDate) < startOfToday,
+    )
+    .sort(
+      (first, second) =>
+        new Date(second.startDate).getTime() -
+        new Date(first.startDate).getTime(),
+    );
+}

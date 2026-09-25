@@ -42,6 +42,7 @@ export type GalleryAlbum = {
   description: string;
   coverImage: ImageReference;
   images: ImageReference[];
+  placeholder?: boolean;
 };
 
 export type HistoryEntry = {

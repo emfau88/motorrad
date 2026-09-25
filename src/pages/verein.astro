@@ -1,0 +1,170 @@
+---
+import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import PageHero from "../components/PageHero.astro";
+import PlaceholderNotice from "../components/PlaceholderNotice.astro";
+import { siteConfig } from "../config/site";
+import { historyEntries } from "../data/history";
+import { boardRoles } from "../data/organization";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Verein"
+  description="Die Ottenauer Motorradfreunde: Geschichte, Gemeinschaft und Vereinsleben."
+  noIndex={true}
+>
+  <PageHero
+    eyebrow="Verein"
+    title="Seit 1976 gemeinsam unterwegs."
+    intro="Die Ottenauer Motorradfreunde verbinden gemeinsame Touren, ein aktives Vereinsleben und die Freude am Motorradfahren."
+    imageLabel="Verein"
+    imageDescription="Historisches OMF-Foto folgt"
+  />
+  <section class="profile section">
+    <div class="container profile__grid">
+      <div>
+        <p class="eyebrow">Was uns verbindet</p>
+        <h2>Mehr als ein Motorradverein.</h2>
+        <p>
+          Die Ottenauer Motorradfreunde sind in {siteConfig.location} zuhause
+          und im Murgtal verwurzelt. Im Mittelpunkt stehen gemeinsame
+          Erlebnisse, Austausch und ein offenes Miteinander.
+        </p>
+      </div>
+      <MediaPlaceholder
+        category="Gemeinschaft"
+        description="Gruppenfoto der OMF folgt"
+        aspect="portrait"
+        tone="light"
+      />
+    </div>
+  </section>
+  <section class="history section" aria-labelledby="history-title">
+    <div class="container">
+      <p class="eyebrow">Vereinsgeschichte</p>
+      <h2 id="history-title">Stationen</h2>
+      <ol>
+        {historyEntries.map((entry) => (
+          <li>
+            <span>{entry.year}</span>
+            <div>
+              <h3>{entry.title}</h3>
+              <p>{entry.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <section class="board section" aria-labelledby="board-title">
+    <div class="container">
+      <p class="eyebrow">Organisation</p>
+      <h2 id="board-title">Vorstand</h2>
+      <PlaceholderNotice title="Namen werden ergänzt">
+        Die Funktionen sind angelegt. Persönliche Angaben veröffentlicht der
+        Verein erst nach Prüfung und Freigabe.
+      </PlaceholderNotice>
+      <ul>
+        {boardRoles.map((member) => (
+          <li>
+            {member.role}
+            <span>Besetzung wird ergänzt</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .profile {
+    background: var(--color-paper-bright);
+  }
+  .profile__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  h2 {
+    margin: var(--space-2) 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+  .profile p:not(.eyebrow) {
+    max-width: 40rem;
+    margin: 0;
+    color: var(--color-muted);
+  }
+  .profile :global(.media-placeholder) {
+    min-height: 24rem;
+  }
+  .history {
+    background: var(--color-ink);
+    color: var(--color-text-inverse);
+  }
+  .history h2 {
+    margin-bottom: var(--space-6);
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 0.0625rem solid rgb(247 245 239 / 0.25);
+  }
+  li {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-bottom: 0.0625rem solid rgb(247 245 239 / 0.25);
+  }
+  li > span {
+    color: var(--color-accent-light);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 800;
+  }
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1;
+  }
+  li p {
+    margin: var(--space-1) 0 0;
+    color: var(--color-metal);
+  }
+  .board {
+    background: var(--color-paper);
+  }
+  .board ul {
+    display: grid;
+    gap: 0;
+    max-width: 58rem;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 0.15rem solid var(--color-text);
+  }
+  .board li {
+    grid-template-columns: 1fr auto;
+    border-bottom-color: var(--color-line);
+    font-weight: 750;
+  }
+  .board li span {
+    color: var(--color-muted);
+    font-size: var(--step--1);
+    font-weight: 500;
+  }
+  @media (min-width: 58rem) {
+    .profile__grid {
+      grid-template-columns: 1fr 0.72fr;
+      gap: var(--space-8);
+    }
+    .history li {
+      grid-template-columns: 10rem 1fr;
+    }
+  }
+</style>
