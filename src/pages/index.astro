@@ -152,15 +152,25 @@ const history = [
             </a>
 
             <div class="anniversary-seal" aria-hidden="true">
-              <span class="anniversary-seal__kicker">Jubiläum</span>
               <img
-                src={asset("omf-logo.webp")}
+                class="anniversary-seal__base"
+                src={asset("anniversary-medallion.png")}
                 alt=""
-                width="256"
-                height="256"
+                width="768"
+                height="768"
               />
-              <strong>50 Jahre</strong>
-              <span>1976 — 2026</span>
+              <span class="anniversary-seal__content">
+                <span class="anniversary-seal__kicker">Jubiläum</span>
+                <img
+                  class="anniversary-seal__logo"
+                  src={asset("omf-logo.webp")}
+                  alt=""
+                  width="256"
+                  height="256"
+                />
+                <strong>50 Jahre</strong>
+                <span>1976 — 2026</span>
+              </span>
             </div>
           </div>
 

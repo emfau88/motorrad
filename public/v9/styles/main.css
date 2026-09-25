@@ -455,37 +455,43 @@ button {
 .anniversary-seal {
   position: relative;
   display: flex;
-  width: 220px;
+  width: 250px;
   aspect-ratio: 1;
   justify-self: center;
+  align-items: stretch;
+  justify-content: stretch;
+  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.38));
+}
+.anniversary-seal__base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.anniversary-seal__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
   color: #fff;
-  background: rgba(11, 13, 12, 0.64);
-  border: 2px solid rgba(255, 216, 77, 0.82);
-  border-radius: 50%;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.34),
-    inset 0 0 0 8px rgba(255, 216, 77, 0.06);
-  backdrop-filter: blur(8px);
+  text-align: center;
 }
-.anniversary-seal::after {
-  position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: inherit;
-  content: "";
-}
-.anniversary-seal img {
+.anniversary-seal__logo {
   width: 62px;
   height: 62px;
-  margin: 4px 0 7px;
+  margin: 5px 0 8px;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
 }
 .anniversary-seal__kicker,
-.anniversary-seal > span:last-child {
+.anniversary-seal__content > span:last-child {
   font-size: 0.59rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -494,7 +500,7 @@ button {
 .anniversary-seal__kicker {
   color: var(--gold2);
 }
-.anniversary-seal > span:last-child {
+.anniversary-seal__content > span:last-child {
   color: #c5cbc5;
 }
 .anniversary-seal strong {
@@ -1140,7 +1146,8 @@ footer a {
     margin-bottom: 28px;
   }
   .anniversary-seal {
-    display: none;
+    width: 205px;
+    margin: 22px auto 0;
   }
   .hero-panel {
     max-width: 560px;
@@ -1194,6 +1201,9 @@ footer a {
   }
   .hero-meeting {
     width: min(100%, 390px);
+  }
+  .anniversary-seal {
+    display: none;
   }
   .hero-grid {
     gap: 18px;
