@@ -404,6 +404,107 @@ button {
   width: min(var(--max), calc(100% - var(--pad) * 2));
   padding: 124px 0 46px;
 }
+.hero-accents {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) 400px;
+  gap: 30px;
+  align-items: start;
+}
+.hero-meeting {
+  display: grid;
+  width: min(100%, 430px);
+  gap: 2px;
+  align-self: start;
+  padding: 14px 18px 15px;
+  color: #fff;
+  background: rgba(13, 15, 14, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  backdrop-filter: blur(10px);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.hero-meeting:hover {
+  background: rgba(13, 15, 14, 0.8);
+  transform: translateY(-2px);
+}
+.hero-meeting__label {
+  color: var(--gold2);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.hero-meeting strong {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.hero-meeting > span:last-child {
+  color: #bfc5bf;
+  font-size: 0.76rem;
+}
+.anniversary-seal {
+  position: relative;
+  display: flex;
+  width: 220px;
+  aspect-ratio: 1;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(11, 13, 12, 0.64);
+  border: 2px solid rgba(255, 216, 77, 0.82);
+  border-radius: 50%;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 8px rgba(255, 216, 77, 0.06);
+  backdrop-filter: blur(8px);
+}
+.anniversary-seal::after {
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: inherit;
+  content: "";
+}
+.anniversary-seal img {
+  width: 62px;
+  height: 62px;
+  margin: 4px 0 7px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.anniversary-seal__kicker,
+.anniversary-seal > span:last-child {
+  font-size: 0.59rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.anniversary-seal__kicker {
+  color: var(--gold2);
+}
+.anniversary-seal > span:last-child {
+  color: #c5cbc5;
+}
+.anniversary-seal strong {
+  margin-bottom: 3px;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+}
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) 400px;
@@ -1033,6 +1134,14 @@ footer a {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+  .hero-accents {
+    position: static;
+    display: block;
+    margin-bottom: 28px;
+  }
+  .anniversary-seal {
+    display: none;
+  }
   .hero-panel {
     max-width: 560px;
   }
@@ -1082,6 +1191,9 @@ footer a {
   }
   .hero-content {
     padding: 104px 0 28px;
+  }
+  .hero-meeting {
+    width: min(100%, 390px);
   }
   .hero-grid {
     gap: 18px;
