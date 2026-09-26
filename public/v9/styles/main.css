@@ -1212,7 +1212,23 @@ footer a {
     width: min(100%, 390px);
   }
   .anniversary-seal {
-    display: none;
+    display: flex;
+    width: 156px;
+    margin: 18px auto 0;
+  }
+  .anniversary-seal__content {
+    padding: 30px 25px 21px;
+  }
+  .anniversary-seal__logo {
+    width: 82px;
+    height: 52px;
+    margin-bottom: 4px;
+  }
+  .anniversary-seal strong {
+    font-size: 1.15rem;
+  }
+  .anniversary-seal__content > span:last-child {
+    font-size: 0.47rem;
   }
   .hero-grid {
     gap: 18px;
