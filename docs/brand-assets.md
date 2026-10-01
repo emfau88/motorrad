@@ -8,9 +8,21 @@
 
 Das weiße Glyph wird mit unveränderten Proportionen und ohne Filter, Animation
 oder zusätzliche Einfassung im Kontakt-Button und im Footer-Link angezeigt.
+Die Anzeigegröße beträgt 44 × 44 Pixel.
 Der Vereinsauftritt bleibt visuell im Vordergrund. Die Dateien werden lokal
 ausgeliefert; Instagram ist ausschließlich über das Profil verlinkt.
 
 Die Instagram-Marke gehört Meta und unterliegt den dort veröffentlichten
 Markenrichtlinien; sie ist kein eigenes Vereinslogo und kein Hinweis auf eine
 Partnerschaft oder Unterstützung durch Meta.
+
+## Kartenvorschau
+
+- Quelle: [OpenStreetMap – Merkurhalle Ottenau](https://www.openstreetmap.org/?mlat=48.78862&mlon=8.33508#map=17/48.78862/8.33508).
+- Aufnahme: 2. Oktober 2026, aus der geladenen Standortkarte; Marker auf der Merkurhalle.
+- Lokale Datei: `public/v9/assets/merkurhalle-map-preview.png`.
+- [© OpenStreetMap-Mitwirkende, Lizenz- und Urheberrechtshinweise](https://www.openstreetmap.org/copyright).
+
+Der vollständige Kartenausschnitt wird als kleines, lokal gespeichertes Bild
+angezeigt. Die Quellenangabe ist zusätzlich unter der Vorschau verlinkt.
+Beim Aufruf der Vorschau entsteht keine Verbindung zu OpenStreetMap.

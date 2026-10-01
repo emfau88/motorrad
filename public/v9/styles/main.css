@@ -877,11 +877,21 @@ button {
 }
 .venue-map {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) 268px;
   margin-top: 20px;
 }
 .venue-map__details {
-  padding: 28px 30px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 24px 30px;
+}
+.venue-map__actions .event-directions {
+  margin-top: 0;
+}
+.venue-map__status:empty {
+  display: none;
 }
 .venue-map h3 {
   margin: 10px 0;
@@ -915,15 +925,58 @@ button {
   font-size: 0.75rem;
 }
 .venue-map__viewer {
-  min-height: 300px;
   position: relative;
+  width: 220px;
+  max-width: calc(100% - 48px);
+  margin: 24px;
+  align-self: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
   background: #101411;
+}
+.venue-map:has([data-map-preview][hidden]) {
+  grid-template-columns: minmax(0, 1fr) 348px;
+}
+.venue-map__viewer:has([data-map-preview][hidden]) {
+  width: 300px;
+}
+.venue-map__preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.venue-map__preview .btn {
+  display: flex;
+  margin: 12px;
+  padding: 10px;
+  font-size: 0.62rem;
+  justify-content: center;
+  width: calc(100% - 24px);
+}
+.venue-map__attribution {
+  display: block;
+  margin: 10px 12px;
+  font-size: 0.6rem;
+  color: #bfc5bf;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.venue-map__cancel {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #bfc5bf;
+  font: inherit;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .venue-map__placeholder {
   display: flex;
   height: 100%;
   min-height: 300px;
-  padding: 28px;
+  padding: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -949,8 +1002,7 @@ button {
   text-underline-offset: 0.2em;
 }
 .venue-map__frame {
-  position: absolute;
-  inset: 0;
+  height: 260px;
 }
 .venue-map__frame iframe {
   display: block;
@@ -1267,7 +1319,10 @@ button {
 }
 .social-profile {
   gap: 16px;
-  max-width: 100%;
+  width: 100%;
+  padding: 20px;
+  border-color: rgba(247, 199, 25, 0.4);
+  background: rgba(247, 199, 25, 0.06);
   text-align: left;
   text-transform: none;
   letter-spacing: normal;
@@ -1279,14 +1334,17 @@ button {
 .social-profile small {
   margin-top: 3px;
   color: #bfc5bf;
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   font-weight: 400;
+}
+.social-profile strong {
+  font-size: 1.12rem;
 }
 .instagram-glyph {
   display: block;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
 }
 /* footer */
 footer {
@@ -1348,11 +1406,24 @@ footer a {
   align-items: center;
   gap: 15px;
   margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(247, 199, 25, 0.3);
+  border-radius: 12px;
+  background: rgba(247, 199, 25, 0.04);
+  max-width: 100%;
 }
-.footer-social span {
+.footer-social strong {
+  display: block;
+  font-size: 1rem;
   text-decoration: underline;
   text-decoration-color: rgba(201, 206, 201, 0.45);
   text-underline-offset: 0.2em;
+}
+.footer-social small {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.85rem;
+  color: #bfc5bf;
 }
 .footer-social:hover {
   color: var(--gold2);
@@ -1507,6 +1578,9 @@ footer a {
     grid-template-columns: 1fr;
   }
   .venue-map {
+    grid-template-columns: minmax(0, 1fr) 268px;
+  }
+  .venue-map__details {
     grid-template-columns: 1fr;
   }
   .hero-accents {
@@ -1551,6 +1625,15 @@ footer a {
   }
 }
 @media (max-width: 720px) {
+  .venue-map,
+  .venue-map:has([data-map-preview][hidden]) {
+    grid-template-columns: 1fr;
+  }
+  .venue-map__viewer {
+    margin: 0 30px 24px;
+    max-width: calc(100% - 60px);
+    justify-self: start;
+  }
   :root {
     --pad: 18px;
   }

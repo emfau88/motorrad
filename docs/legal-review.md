@@ -53,7 +53,10 @@ kein Kontaktformular, Tracking, Cookie-/LocalStorage-Code, eingebettete
 Videos oder Social-Media-Widgets. Eine OpenStreetMap-Standortkarte wird erst
 nach einem ausdrücklichen Klick auf „Karte laden“ als iframe erzeugt. Die
 Aktivierung wird nicht gespeichert; „Karte ausblenden“ entfernt das iframe.
-Vorher werden weder Kartendateien noch externe Vorschaubilder geladen.
+Eine kleine, lokal gespeicherte Kartenaufnahme wird sofort angezeigt, ohne
+Verbindung zu OpenStreetMap. „Interaktive Karte öffnen“ zeigt erst den
+Verbindungshinweis; nur „Karte laden“ aktiviert den externen Dienst.
+Abbrechen oder Ausblenden führt zur lokalen Vorschau zurück.
 Die Datenschutzerklärung bezieht
 sich auf diese Website, nicht auf die gesamte interne Mitgliederverwaltung.
 GitHub protokolliert IP-Adressen auch bei anonymen Pages-Aufrufen. Keine

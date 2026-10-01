@@ -5,7 +5,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
-const assetRevision = "20261001-8";
+const assetRevision = "20261002-1";
 const instagramUrl = "https://www.instagram.com/omf19762026/";
 const venueMapUrl =
   "https://www.openstreetmap.org/export/embed.html?bbox=8.3305%2C48.7868%2C8.3397%2C48.7905&layer=mapnik&marker=48.78862%2C8.33508";
@@ -325,48 +325,85 @@ const history = [
             aria-labelledby="venue-map-title"
           >
             <div class="venue-map__details">
-              <div class="eyebrow">Anfahrt</div>
-              <h3 class="display" id="venue-map-title">
-                Merkurhalle Ottenau
-              </h3>
-              <p>
-                Furtwänglerstraße 15
-                <br />
-                76571 Gaggenau-Ottenau
-              </p>
-              <a
-                class="event-directions"
-                href={directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Anfahrt zur Merkurhalle
-                <small>Route in Google Maps öffnen</small>
-              </a>
-              <a
-                class="venue-map__link"
-                href={venueMapLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Standort in OpenStreetMap öffnen
-              </a>
-              <button
-                type="button"
-                class="venue-map__unload"
-                data-map-unload
-                hidden
-              >
-                Karte ausblenden
-              </button>
-              <p class="venue-map__status" role="status" data-map-status></p>
+              <div class="venue-map__address">
+                <div class="eyebrow">Anfahrt</div>
+                <h3 class="display" id="venue-map-title">
+                  Merkurhalle Ottenau
+                </h3>
+                <p>
+                  Furtwänglerstraße 15
+                  <br />
+                  76571 Gaggenau-Ottenau
+                </p>
+              </div>
+              <div class="venue-map__actions">
+                <a
+                  class="event-directions"
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Anfahrt zur Merkurhalle
+                  <small>Route in Google Maps öffnen</small>
+                </a>
+                <a
+                  class="venue-map__link"
+                  href={venueMapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Standort in OpenStreetMap öffnen
+                </a>
+                <button
+                  type="button"
+                  class="venue-map__unload"
+                  data-map-unload
+                  hidden
+                >
+                  Karte ausblenden
+                </button>
+                <p class="venue-map__status" role="status" data-map-status></p>
+              </div>
             </div>
             <div class="venue-map__viewer">
-              <div class="venue-map__placeholder" data-map-placeholder>
-                <strong>Standortkarte</strong>
+              <div class="venue-map__preview" data-map-preview>
+                <img
+                  src={asset("merkurhalle-map-preview.png")}
+                  width="706"
+                  height="355"
+                  loading="lazy"
+                  alt="Kartenansicht von Ottenau mit der Merkurhalle an der Furtwänglerstraße markiert"
+                />
+                <button
+                  class="btn primary"
+                  type="button"
+                  data-map-open
+                  aria-controls="venue-map-consent"
+                  aria-expanded="false"
+                  hidden
+                >
+                  Interaktive Karte öffnen
+                </button>
+                <a
+                  class="venue-map__attribution"
+                  href="https://www.openstreetmap.org/copyright"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  © OpenStreetMap-Mitwirkende
+                </a>
+              </div>
+              <div
+                id="venue-map-consent"
+                class="venue-map__placeholder"
+                data-map-placeholder
+                hidden
+              >
+                <strong>Interaktive Karte</strong>
                 <p id="venue-map-notice">
-                  Mit „Karte laden“ stimmst du zu, dass OpenStreetMap die Karte
-                  bereitstellt und dabei unter anderem deine IP-Adresse erhält.
+                  Mit „Karte laden“ erlaubst du die Verbindung zu OpenStreetMap.
+                  Dabei werden deine IP-Adresse und technische Verbindungsdaten
+                  übermittelt.
                 </p>
                 <button
                   class="btn primary"
@@ -374,16 +411,15 @@ const history = [
                   data-map-load
                   aria-controls="venue-map-frame"
                   aria-describedby="venue-map-notice"
-                  hidden
                 >
                   Karte laden
+                </button>
+                <button class="venue-map__cancel" type="button" data-map-cancel>
+                  Zurück zur Vorschau
                 </button>
                 <a href={`${basePath}datenschutz/#map-title`}>
                   Datenschutzhinweise zur Karte
                 </a>
-                <noscript>
-                  <p>Nutze ohne JavaScript die Standort- oder Routenlinks.</p>
-                </noscript>
               </div>
               <div
                 id="venue-map-frame"
@@ -632,7 +668,10 @@ const history = [
                 loading="lazy"
                 decoding="async"
               />
-              <span>Instagram · @omf19762026</span>
+              <span>
+                <strong>Instagram</strong>
+                <small>@omf19762026</small>
+              </span>
             </a>
           </div>
           <nav aria-label="Navigation im Fußbereich">

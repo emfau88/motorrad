@@ -28,8 +28,37 @@
   const mapUnload = document.querySelector("[data-map-unload]");
   const mapPlaceholder = document.querySelector("[data-map-placeholder]");
   const mapStatus = document.querySelector("[data-map-status]");
-  if (mapHost && mapLoad && mapUnload && mapPlaceholder && mapStatus) {
-    mapLoad.hidden = false;
+  const mapPreview = document.querySelector("[data-map-preview]");
+  const mapOpen = document.querySelector("[data-map-open]");
+  const mapCancel = document.querySelector("[data-map-cancel]");
+  if (
+    mapHost &&
+    mapLoad &&
+    mapUnload &&
+    mapPlaceholder &&
+    mapStatus &&
+    mapPreview &&
+    mapOpen &&
+    mapCancel
+  ) {
+    mapOpen.hidden = false;
+    const showPreview = () => {
+      mapHost.replaceChildren();
+      mapHost.hidden = true;
+      mapPlaceholder.hidden = true;
+      mapPreview.hidden = false;
+      mapUnload.hidden = true;
+      mapOpen.setAttribute("aria-expanded", "false");
+      mapOpen.focus();
+    };
+    mapOpen.addEventListener("click", () => {
+      mapPreview.hidden = true;
+      mapPlaceholder.hidden = false;
+      mapOpen.setAttribute("aria-expanded", "true");
+      mapStatus.textContent = "";
+      mapLoad.focus();
+    });
+    mapCancel.addEventListener("click", showPreview);
     mapLoad.addEventListener("click", () => {
       if (mapHost.querySelector("iframe")) return;
       const mapUrl = new URL(mapHost.dataset.mapUrl);
@@ -51,12 +80,8 @@
       mapUnload.focus();
     });
     mapUnload.addEventListener("click", () => {
-      mapHost.replaceChildren();
-      mapHost.hidden = true;
-      mapPlaceholder.hidden = false;
-      mapUnload.hidden = true;
-      mapStatus.textContent = "Die Karte ist deaktiviert.";
-      mapLoad.focus();
+      showPreview();
+      mapStatus.textContent = "Die interaktive Karte ist deaktiviert.";
     });
   }
 

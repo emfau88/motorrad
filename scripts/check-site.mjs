@@ -84,6 +84,16 @@ for (const [link] of instagramLinks) {
 }
 assert(!home.includes("instagram.com/embed"));
 assert(home.includes("data-map-load"));
+assert(home.includes("data-map-open"));
+assert(home.includes("data-map-cancel"));
+assert(home.includes("merkurhalle-map-preview.png"));
+assert(/data-map-placeholder\s+hidden/.test(home));
+assert(home.includes("https://www.openstreetmap.org/copyright"));
+const mapPreviewMetadata = await sharp(
+  path.join(dist, "v9/assets/merkurhalle-map-preview.png"),
+).metadata();
+assert.equal(mapPreviewMetadata.width, 706);
+assert.equal(mapPreviewMetadata.height, 355);
 assert(home.includes('id="venue-map-frame"'));
 assert(home.includes("Furtwänglerstraße 15"));
 assert(/class="footer-badge"[\s\S]*?omf-logo-transparent-v2\.png/.test(home));
