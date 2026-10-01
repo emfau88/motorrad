@@ -50,10 +50,20 @@ Recherche- und Technikstand: 1. Oktober 2026. Keine Garantie einer juristischen 
 
 Statische Astro-Website, GitHub Pages, lokale Bilder und Schriftdateien,
 kein Kontaktformular, Tracking, Cookie-/LocalStorage-Code, eingebettete
-Karten, Videos oder Social-Media-Widgets. Die Datenschutzerklärung bezieht
+Videos oder Social-Media-Widgets. Eine OpenStreetMap-Standortkarte wird erst
+nach einem ausdrücklichen Klick auf „Karte laden“ als iframe erzeugt. Die
+Aktivierung wird nicht gespeichert; „Karte ausblenden“ entfernt das iframe.
+Vorher werden weder Kartendateien noch externe Vorschaubilder geladen.
+Die Datenschutzerklärung bezieht
 sich auf diese Website, nicht auf die gesamte interne Mitgliederverwaltung.
 GitHub protokolliert IP-Adressen auch bei anonymen Pages-Aufrufen. Keine
 unbelegte „7 Tage“-Speicherfrist und keine pauschale Cookie-Bannerpflicht.
+
+Die Hallenanschrift Furtwänglerstraße 15 ist in der
+[Gaggenauer Woche vom 29. August 2024](https://www.gaggenau.de/gaggenauer-woche-nr-35-vom-29-august-2024.139691.htm)
+genannt. Der Kartenmarker (48.78862, 8.33508) liegt auf der Merkurhalle,
+[OpenStreetMap-Weg 150034141](https://www.openstreetmap.org/way/150034141),
+anhand der öffentlichen OSM-Geodaten geprüft.
 
 ## Rechts- und Anbieterquellen
 
@@ -65,3 +75,5 @@ unbelegte „7 Tage“-Speicherfrist und keine pauschale Cookie-Bannerpflicht.
 - [GitHub Data Protection Agreement](https://github.com/customer-terms/github-data-protection-agreement)
 - [LfDI Baden-Württemberg: Vereinsfotos](https://www.baden-wuerttemberg.datenschutz.de/faq-veroeffentlichung-von-fotos-speziell-fuer-vereine/)
 - [LfDI Baden-Württemberg: Kontakt](https://www.baden-wuerttemberg.datenschutz.de/kontakt-aufnehmen/)
+- [OpenStreetMap Foundation: Datenschutz](https://osmfoundation.org/wiki/Privacy_Policy)
+- [OpenStreetMap Foundation: Dienste und Datenschutz](https://osmfoundation.org/wiki/Services_and_tile_users_privacy_FAQ)

@@ -20,23 +20,23 @@ Die visuelle v9-Version ist die aktuelle Hauptseite. Sie wurde aus dem eigenstä
 - v9-Bilder, Schriften, Styles und Verhalten als separate Assets
 - redaktionelle Listen der Hauptseite direkt in Astro-Datenstrukturen
 - einheitliche Bildkarten mit tastaturbedienbarer Foto-Großansicht
-- Jubiläums-Countdown mit Sekunden und externer Google-Maps-Anfahrt (keine Karten-Einbettung)
+- Jubiläums-Countdown mit Sekunden, Google-Maps-Anfahrt und optionaler Standortkarte
 - strukturierte Mock-Daten als spätere CMS-Schnittstelle
 
 ## Änderungen vom 1. Oktober 2026
 
-- Vier neue Vereinsfotos eingebunden; alte verpixelte Gruppen-/Eventbilder und Zeitungsausschnitte entfernt. Der Jubiläumsrückblick ist ausdrücklich als Aufnahme von 2016 gekennzeichnet.
-- Fotos dezent aufbereitet: passende Ausschnitte, Farb-/Helligkeitskorrekturen, Perspektivkorrektur des abfotografierten historischen Bildes und weichgezeichnete Kennzeichen im Tourenbild. Originaldateien unverändert erhalten.
-- Optimierte WebP-Dateien und responsive Bildgrößen eingeführt; kleine Originale werden nicht künstlich hochskaliert. Die Bildaufbereitung ist über ein Skript reproduzierbar.
-- Vereinsleben-Karten auf einheitliche 16:9-Bildflächen und gemeinsame Textkanten ausgerichtet, ohne Personen durch einen erzwungenen Bildbeschnitt zu verlieren.
-- Klickbare Foto-Großansicht mit Weiterblättern, Pfeiltasten, Escape und direktem Bildlink als Alternative ohne JavaScript ergänzt.
-- Kontaktinformationen konsistent linksbündig ausgerichtet und für schmale Bildschirme angepasst.
-- Jubiläums-Countdown um Sekunden sowie einen externen Google-Maps-Link zur Anfahrt zur Merkurhalle ergänzt; keine eingebettete Karte.
-- Impressum und Datenschutzhinweise recherchiert, im Seitendesign umgesetzt und im Footer verlinkt. Sichtbare Entwurfshinweise auf Wunsch entfernt; die intern dokumentierten Freigabepunkte bleiben bestehen.
-- Jubiläumslogo rund 10 % vergrößert, Lorbeerfarbe auf das Vereinsgelb/-gold abgestimmt und die Zweige etwas weiter nach außen gesetzt. Die Maskierung der Zweige überarbeitet, um störende Mittelstreifen zu vermeiden.
-- Einen sanften Shine von links unten nach rechts oben ausschließlich auf den Lorbeerblättern ergänzt, gefolgt von einem kurzen Glanzpunkt an der oberen rechten Blattspitze. Logo und Schrift bleiben ohne Effekt; die Sequenz wiederholt sich im 12-Sekunden-Takt, funktioniert auch mobil, pausiert außerhalb des sichtbaren Bereichs und berücksichtigt reduzierte Bewegung.
-- Instagram-Profil [@omf19762026](https://www.instagram.com/omf19762026/) über einen eigenen Text-Button im Kontaktbereich und einen dezenten Footer-Link angebunden. Kein nachgebautes Markenlogo, kein Feed, kein Instagram-Skript; externe Links öffnen ausdrücklich gekennzeichnet in einem neuen Tab. Grundlage: [Instagram-Markenrichtlinien](https://www.meta.com/de-de/brand/resources/instagram/instagram-brand/).
-- Automatisierte Website-Prüfungen für Bilder, Bildgrößen, Foto-Großansicht, Rechtsseiten, Instagram-Links und Signet-Effekte ergänzt; Build sowie Desktop-, Tablet- und Mobilansichten geprüft.
+- Neue Vereinsfotos ersetzen die unscharfen Gruppenbilder und Zeitungsausschnitte. Der Jubiläumsrückblick ist mit 2016 gekennzeichnet.
+- Bildausschnitte, Farben und Helligkeit verbessert; das historische Foto begradigt und Kennzeichen im Tourenbild unkenntlich gemacht. Originale erhalten.
+- Bilder für kurze Ladezeiten und unterschiedliche Bildschirmgrößen optimiert.
+- Bildkarten und Kontaktinformationen einheitlich ausgerichtet.
+- Foto-Großansicht mit Weiterblättern und Tastaturbedienung ergänzt.
+- Countdown um Sekunden und die Anfahrt zur Merkurhalle mit Routenlink und einer erst nach Zustimmung geladenen Standortkarte ergänzt.
+- Impressum und Datenschutz überarbeitet und verlinkt; sichtbare Entwurfshinweise entfernt. Offene Freigabepunkte bleiben dokumentiert.
+- Jubiläumslogo vergrößert, Lorbeerfarbe und Zweigabstand angepasst sowie störende Mittelkanten korrigiert.
+- Sanften diagonalen Glanz und einen kurzen Glanzpunkt an der rechten Lorbeerspitze ergänzt, auch mobil. Logo und Schrift bleiben ohne Effekt.
+- [Instagram-Profil @omf19762026](https://www.instagram.com/omf19762026/) mit offiziellem Glyph im Kontaktbereich und Footer verlinkt, ohne eingebetteten Feed.
+- Vereinslogo im Footer wie im Header freigestellt dargestellt.
+- Darstellung auf Desktop, Tablet und Smartphone sowie Seitenfunktionen geprüft.
 
 ## Lokal starten
 
@@ -58,9 +58,10 @@ npm run build
 - [Inhaltsmodell](docs/content-model.md)
 - [Vereinsfotos und Bildaufbereitung](docs/photo-assets.md)
 - [Rechtliche Quellen und offene Freigaben](docs/legal-review.md)
+- [Herkunft des Instagram-Glyphs](docs/brand-assets.md)
 
 ## Noch zu bestätigen
 
 Die neuen Vereinsfotos ersetzen die Zeitungsausschnitte und die alten verpixelten Bilder. Impressum und Datenschutz sind im Design der Hauptseite vorbereitet und im Footer verlinkt.
 
-Die endgültige Domain und Veranstaltungsangaben sowie die zustellfähige Vereinsanschrift und die aktuelle Vorstandsvertretung sind noch zu bestätigen. Die sichtbaren Entwurfshinweise wurden auf Wunsch entfernt; die internen Freigabepunkte bleiben offen. Details und Quellen: [rechtliche Freigabe](docs/legal-review.md).
+Die endgültige Domain, Veranstaltungsangaben, zustellfähige Vereinsanschrift und aktuelle Vorstandsvertretung sind noch zu bestätigen. Details und Quellen: [rechtliche Freigabe](docs/legal-review.md).

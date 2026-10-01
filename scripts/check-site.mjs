@@ -3,6 +3,7 @@ import { readFile, access, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
+import { createHash } from "node:crypto";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const dist = path.join(root, "dist");
@@ -38,6 +39,11 @@ for (const route of ["impressum", "datenschutz"]) {
   assert(!html.includes("Dokumentenplatzhalter"));
   assert(!html.includes("Vereinsbestätigung noch offen"));
   assert(!html.includes("Hinweis zum Prüfstand"));
+  if (route === "datenschutz") {
+    assert(html.includes('id="map-title"'));
+    assert(html.includes("OpenStreetMap Foundation"));
+    assert(html.includes("Karte ausblenden"));
+  }
 }
 assert(home.includes("Das ist unser Verein"));
 assert(home.includes("Rückblick: 40 Jahre OMF"));
@@ -77,6 +83,32 @@ for (const [link] of instagramLinks) {
   assert(link.includes("neuem Tab"));
 }
 assert(!home.includes("instagram.com/embed"));
+assert(home.includes("data-map-load"));
+assert(home.includes('id="venue-map-frame"'));
+assert(home.includes("Furtwänglerstraße 15"));
+assert(/class="footer-badge"[\s\S]*?omf-logo-transparent-v2\.png/.test(home));
+assert(home.includes("https://www.openstreetmap.org/export/embed.html?"));
+assert(
+  !home.includes('rel="preconnect"'),
+  "External map must not preconnect before consent",
+);
+assert.equal([...home.matchAll(/class="instagram-glyph"/g)].length, 2);
+for (const [link] of home.matchAll(
+  /<a\b[^>]*href="https:\/\/www\.instagram\.com\/omf19762026\/"[^>]*>[\s\S]*?<\/a>/g,
+)) {
+  assert(
+    !link.includes("↗"),
+    "Instagram links must not contain arrow decorations",
+  );
+}
+const officialGlyph = await readFile(
+  path.join(dist, "v9/assets/instagram-glyph-white.svg"),
+);
+assert.equal(
+  createHash("sha256").update(officialGlyph).digest("hex"),
+  "3347813e9e8f082cdf48495818bd370ccff94b687efb8aa1c8a7b36cfcfb8291",
+  "Official Instagram glyph must remain unchanged",
+);
 assert.equal([...home.matchAll(/data-photo-caption=/g)].length, 5);
 assert(
   home.includes(
@@ -103,5 +135,5 @@ for (const url of home.matchAll(
 }
 assert(!/<iframe|<form\b/.test(home), "Unexpected embedded service or form");
 console.log(
-  "Site checks passed: photos, responsive image widths, removed assets, legal routes and footer links.",
+  "Site checks passed: photos, legal routes, official Instagram glyph, footer logo and opt-in map.",
 );

@@ -23,6 +23,43 @@
     seal.classList.add("is-visible");
   }
 
+  const mapHost = document.getElementById("venue-map-frame");
+  const mapLoad = document.querySelector("[data-map-load]");
+  const mapUnload = document.querySelector("[data-map-unload]");
+  const mapPlaceholder = document.querySelector("[data-map-placeholder]");
+  const mapStatus = document.querySelector("[data-map-status]");
+  if (mapHost && mapLoad && mapUnload && mapPlaceholder && mapStatus) {
+    mapLoad.hidden = false;
+    mapLoad.addEventListener("click", () => {
+      if (mapHost.querySelector("iframe")) return;
+      const mapUrl = new URL(mapHost.dataset.mapUrl);
+      if (
+        mapUrl.origin !== "https://www.openstreetmap.org" ||
+        mapUrl.pathname !== "/export/embed.html"
+      )
+        return;
+      // No iframe, connection or stored consent exists before this explicit click.
+      const frame = document.createElement("iframe");
+      frame.title = "Standortkarte der Merkurhalle Ottenau – OpenStreetMap";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.src = mapUrl.href;
+      mapHost.replaceChildren(frame);
+      mapHost.hidden = false;
+      mapPlaceholder.hidden = true;
+      mapUnload.hidden = false;
+      mapStatus.textContent = "OpenStreetMap ist aktiviert.";
+      mapUnload.focus();
+    });
+    mapUnload.addEventListener("click", () => {
+      mapHost.replaceChildren();
+      mapHost.hidden = true;
+      mapPlaceholder.hidden = false;
+      mapUnload.hidden = true;
+      mapStatus.textContent = "Die Karte ist deaktiviert.";
+      mapLoad.focus();
+    });
+  }
+
   const setDrawer = (open) => {
     drawer.classList.toggle("open", open);
     menuBtn.classList.toggle("active", open);

@@ -5,8 +5,12 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
-const assetRevision = "20261001-6";
+const assetRevision = "20261001-8";
 const instagramUrl = "https://www.instagram.com/omf19762026/";
+const venueMapUrl =
+  "https://www.openstreetmap.org/export/embed.html?bbox=8.3305%2C48.7868%2C8.3397%2C48.7905&layer=mapnik&marker=48.78862%2C8.33508";
+const venueMapLink =
+  "https://www.openstreetmap.org/?mlat=48.78862&mlon=8.33508#map=17/48.78862/8.33508";
 const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Merkurhalle%20Ottenau%2C%20Gaggenau";
 const photoSources = (name: string) => {
@@ -314,17 +318,81 @@ const history = [
               <p id="countdown-status" hidden>
                 Jubiläum läuft / Termin erreicht
               </p>
+            </div>
+          </article>
+          <section
+            class="card dark venue-map reveal"
+            aria-labelledby="venue-map-title"
+          >
+            <div class="venue-map__details">
+              <div class="eyebrow">Anfahrt</div>
+              <h3 class="display" id="venue-map-title">
+                Merkurhalle Ottenau
+              </h3>
+              <p>
+                Furtwänglerstraße 15
+                <br />
+                76571 Gaggenau-Ottenau
+              </p>
               <a
                 class="event-directions"
                 href={directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Anfahrt zur Merkurhalle <span aria-hidden="true">↗</span>
+                Anfahrt zur Merkurhalle
                 <small>Route in Google Maps öffnen</small>
               </a>
+              <a
+                class="venue-map__link"
+                href={venueMapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Standort in OpenStreetMap öffnen
+              </a>
+              <button
+                type="button"
+                class="venue-map__unload"
+                data-map-unload
+                hidden
+              >
+                Karte ausblenden
+              </button>
+              <p class="venue-map__status" role="status" data-map-status></p>
             </div>
-          </article>
+            <div class="venue-map__viewer">
+              <div class="venue-map__placeholder" data-map-placeholder>
+                <strong>Standortkarte</strong>
+                <p id="venue-map-notice">
+                  Mit „Karte laden“ stimmst du zu, dass OpenStreetMap die Karte
+                  bereitstellt und dabei unter anderem deine IP-Adresse erhält.
+                </p>
+                <button
+                  class="btn primary"
+                  type="button"
+                  data-map-load
+                  aria-controls="venue-map-frame"
+                  aria-describedby="venue-map-notice"
+                  hidden
+                >
+                  Karte laden
+                </button>
+                <a href={`${basePath}datenschutz/#map-title`}>
+                  Datenschutzhinweise zur Karte
+                </a>
+                <noscript>
+                  <p>Nutze ohne JavaScript die Standort- oder Routenlinks.</p>
+                </noscript>
+              </div>
+              <div
+                id="venue-map-frame"
+                class="venue-map__frame"
+                data-map-url={venueMapUrl}
+                hidden
+              ></div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -482,11 +550,19 @@ const history = [
                 rel="noopener noreferrer"
                 aria-label="OMF auf Instagram: @omf19762026 (öffnet in neuem Tab)"
               >
+                <img
+                  class="instagram-glyph"
+                  src={asset("instagram-glyph-white.svg")}
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span>
                   <strong>OMF auf Instagram</strong>
                   <small>@omf19762026</small>
                 </span>
-                <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -528,10 +604,10 @@ const history = [
             <div class="footer-mark">
               <span class="footer-badge">
                 <img
-                  src={asset("omf-logo.webp")}
+                  src={asset("omf-logo-transparent-v2.png")}
                   alt=""
-                  width="256"
-                  height="256"
+                  width="1000"
+                  height="630"
                   loading="lazy"
                 />
               </span>
@@ -547,7 +623,16 @@ const history = [
               rel="noopener noreferrer"
               aria-label="Instagram: @omf19762026 (öffnet in neuem Tab)"
             >
-              Instagram · @omf19762026 <span aria-hidden="true">↗</span>
+              <img
+                class="instagram-glyph"
+                src={asset("instagram-glyph-white.svg")}
+                alt=""
+                width="30"
+                height="30"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Instagram · @omf19762026</span>
             </a>
           </div>
           <nav aria-label="Navigation im Fußbereich">
