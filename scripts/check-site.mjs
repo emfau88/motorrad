@@ -74,8 +74,8 @@ const instagramLinks = [
 ];
 assert.equal(
   instagramLinks.length,
-  2,
-  "Instagram missing from contact area or footer",
+  1,
+  "Instagram must appear once in the contact area",
 );
 for (const [link] of instagramLinks) {
   assert(link.includes('target="_blank"'));
@@ -102,7 +102,8 @@ assert(
   !home.includes('rel="preconnect"'),
   "External map must not preconnect before consent",
 );
-assert.equal([...home.matchAll(/class="instagram-glyph"/g)].length, 2);
+assert.equal([...home.matchAll(/class="instagram-glyph"/g)].length, 1);
+assert(!home.includes('class="footer-social"'));
 for (const [link] of home.matchAll(
   /<a\b[^>]*href="https:\/\/www\.instagram\.com\/omf19762026\/"[^>]*>[\s\S]*?<\/a>/g,
 )) {

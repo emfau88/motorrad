@@ -7,7 +7,7 @@
 - SHA-256: `3347813e9e8f082cdf48495818bd370ccff94b687efb8aa1c8a7b36cfcfb8291`.
 
 Das weiße Glyph wird mit unveränderten Proportionen und ohne Filter, Animation
-oder zusätzliche Einfassung im Kontakt-Button und im Footer-Link angezeigt.
+oder zusätzliche Einfassung ausschließlich im Kontakt-Button angezeigt.
 Die Anzeigegröße beträgt 44 × 44 Pixel.
 Der Vereinsauftritt bleibt visuell im Vordergrund. Die Dateien werden lokal
 ausgeliefert; Instagram ist ausschließlich über das Profil verlinkt.
