@@ -43,6 +43,8 @@ Die visuelle v9-Version ist die aktuelle Hauptseite. Sie wurde aus dem eigenstä
 - Anfahrt-Kachel kompakt angeordnet: Adresse, Routenlinks und kleine, sofort sichtbare Kartenvorschau.
 - Interaktive Karte optional, mit kurzem Datenschutzhinweis erst nach dem Öffnen.
 - Instagram-Verlinkung im Kontaktbereich größer und deutlicher gestaltet; den doppelten Link im Footer entfernt.
+- Hellen Hintergrund gedämpft und Abschnittsabstände harmonisiert; klare Hell-Dunkel-Gliederung beibehalten.
+- Überschrift „Seit 1976“ stärker gewichtet und Abschnittsanfänge beim Navigieren unterhalb des Headers sichtbar gehalten.
 
 ## Lokal starten
 

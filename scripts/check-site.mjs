@@ -56,6 +56,12 @@ const sealStyles = await readFile(
   path.join(dist, "v9/styles/main.css"),
   "utf8",
 );
+assert(sealStyles.includes("--bg: #eae5d9"));
+assert(sealStyles.includes("scroll-margin-top: 94px"));
+assert(sealStyles.includes("scroll-margin-top: 78px"));
+assert(sealStyles.includes(".timeline h2"));
+assert(!home.includes("design-preview.css"));
+assert(!home.includes("data-design-preview"));
 assert(
   !sealStyles.includes(".anniversary-seal__logo-frame::after"),
   "Logo must remain free of shine effects",

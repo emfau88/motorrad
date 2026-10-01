@@ -13,11 +13,11 @@
   src: url("../assets/barlow-condensed-900.woff2") format("woff2");
 }
 :root {
-  --bg: #f4efe4;
+  --bg: #eae5d9;
   --bg2: #ebe3d4;
   --surface: #fffaf1;
   --ink: #101211;
-  --muted: #646960;
+  --muted: #575e55;
   --line: rgba(16, 18, 17, 0.11);
   --dark: #0d0f0e;
   --dark2: #151816;
@@ -108,7 +108,8 @@ button {
   color: var(--muted);
 }
 .section {
-  padding: 88px 0;
+  padding: 72px 0;
+  scroll-margin-top: 94px;
 }
 .section.alt {
   background: var(--bg2);
@@ -197,7 +198,11 @@ button {
   justify-content: space-between;
   gap: 28px;
   align-items: end;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+}
+.section-head .eyebrow,
+.timeline .eyebrow {
+  margin-bottom: 10px;
 }
 .section-head h2 {
   font-size: clamp(2.7rem, 6vw, 4.8rem);
@@ -1143,7 +1148,7 @@ button {
   font-size: 0.62rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #7f847d;
+  color: #62695f;
 }
 .story-meta > span:last-child {
   text-align: right;
@@ -1187,6 +1192,9 @@ button {
   grid-template-columns: 0.42fr 1fr;
   gap: 34px;
 }
+.timeline h2 {
+  font-size: clamp(2.7rem, 5.4vw, 4.5rem);
+}
 .timeline-list {
   border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
@@ -1218,7 +1226,7 @@ button {
 }
 /* contact */
 .history-photo {
-  margin: 44px 0 0;
+  margin: 32px 0 0;
 }
 .history-photo img {
   width: 100%;
@@ -1610,9 +1618,12 @@ footer a {
   :root {
     --pad: 18px;
   }
-  .section,
   .intro {
     padding: 72px 0;
+  }
+  .section {
+    padding: 56px 0;
+    scroll-margin-top: 78px;
   }
   .nav {
     height: 78px;
@@ -1706,6 +1717,7 @@ footer a {
   }
   .section-head {
     display: block;
+    margin-bottom: 26px;
   }
   .section-head p {
     margin-top: 12px;
