@@ -8,6 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "photos:prepare": "node scripts/prepare-club-photos.mjs",
+    "test:site": "node scripts/check-site.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -19,6 +21,7 @@
     "@astrojs/check": "0.9.10",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.0.1",
+    "sharp": "0.35.4",
     "typescript": "6.0.3"
   }
 }

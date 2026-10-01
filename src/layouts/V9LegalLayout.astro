@@ -1,0 +1,95 @@
+---
+import { legalInfo } from "../config/legal";
+import { siteUrl } from "../utils/urls";
+
+type Props = { title: string; description: string };
+const { title, description } = Astro.props;
+const asset = (file: string) => siteUrl(`/v9/assets/${file}`);
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f1110" />
+    {legalInfo.requiresClubConfirmation && (
+      <meta name="robots" content="noindex" />
+    )}
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" href={asset("omf-logo.webp")} />
+    <link
+      rel="stylesheet"
+      href={`${siteUrl("/v9/styles/main.css")}?v=20261001-1`}
+    />
+    <link
+      rel="stylesheet"
+      href={`${siteUrl("/v9/styles/legal.css")}?v=20261001-1`}
+    />
+    <title>{title} | Ottenauer Motorradfreunde</title>
+  </head>
+  <body class="legal-page">
+    <a class="skip-link" href="#main-content">
+      Zum Inhalt springen
+    </a>
+    <header class="legal-header">
+      <div class="wrap nav">
+        <a class="brand" href={siteUrl("/")} aria-label="OMF – zur Startseite">
+          <span class="brand-badge">
+            <img
+              src={asset("omf-logo-transparent-v2.png")}
+              alt=""
+              width="1000"
+              height="630"
+            />
+          </span>
+          <span class="brand-copy">
+            <strong>Ottenauer Motorradfreunde</strong>
+            <span>Gaggenau-Ottenau · seit 1976</span>
+          </span>
+        </a>
+        <a class="legal-home" href={siteUrl("/")}>
+          Zur Startseite
+        </a>
+      </div>
+    </header>
+    <main class="wrap legal-document" id="main-content">
+      <div class="eyebrow">Rechtliche Informationen</div>
+      <h1 class="display">{title}</h1>
+      <p class="legal-date">Stand: {legalInfo.updated}</p>
+      {legalInfo.requiresClubConfirmation && (
+        <aside class="legal-review" aria-label="Hinweis zum Prüfstand">
+          <strong>Vereinsbestätigung noch offen</strong>
+          <p>
+            Die Angaben wurden anhand öffentlich zugänglicher Quellen
+            vorbereitet. Der Verein muss die zustellfähige Anschrift und die
+            aktuelle Vertretungsregel des Vorstands noch bestätigen. Die Texte
+            sind bis dahin ein Entwurf.
+          </p>
+        </aside>
+      )}
+      <slot />
+    </main>
+    <footer>
+      <div class="wrap legal-footer">
+        <p>Ottenauer Motorradfreunde e. V. · Gaggenau-Ottenau</p>
+        <nav aria-label="Rechtliche Informationen">
+          <a href={siteUrl("/")}>Startseite</a>
+          <a
+            href={siteUrl("/impressum/")}
+            aria-current={title === "Impressum" ? "page" : undefined}
+          >
+            Impressum
+          </a>
+          <a
+            href={siteUrl("/datenschutz/")}
+            aria-current={title === "Datenschutz" ? "page" : undefined}
+          >
+            Datenschutz
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

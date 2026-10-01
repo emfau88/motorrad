@@ -19,6 +19,8 @@ Die visuelle v9-Version ist die aktuelle Hauptseite. Sie wurde aus dem eigenstä
 - zentrale Design-Tokens in CSS
 - v9-Bilder, Schriften, Styles und Verhalten als separate Assets
 - redaktionelle Listen der Hauptseite direkt in Astro-Datenstrukturen
+- einheitliche Bildkarten mit tastaturbedienbarer Foto-Großansicht
+- Jubiläums-Countdown mit Sekunden und externer Google-Maps-Anfahrt (keine Karten-Einbettung)
 - strukturierte Mock-Daten als spätere CMS-Schnittstelle
 
 ## Lokal starten
@@ -39,7 +41,11 @@ npm run build
 - [Umsetzungsplan](docs/implementation-plan.md)
 - [Architektur](docs/architecture.md)
 - [Inhaltsmodell](docs/content-model.md)
+- [Vereinsfotos und Bildaufbereitung](docs/photo-assets.md)
+- [Rechtliche Quellen und offene Freigaben](docs/legal-review.md)
 
 ## Noch zu bestätigen
 
-Die endgültige Domain, rechtlichen Texte sowie sämtliche Veranstaltungsangaben sollten vor der offiziellen Veröffentlichung durch den Verein bestätigt werden.
+Die neuen Vereinsfotos ersetzen die Zeitungsausschnitte und die alten verpixelten Bilder. Impressum und Datenschutz sind im Design der Hauptseite vorbereitet und im Footer verlinkt.
+
+Die endgültige Domain und Veranstaltungsangaben sowie die zustellfähige Vereinsanschrift und die aktuelle Vorstandsvertretung sind noch zu bestätigen. Die Rechtsseiten bleiben bis dahin ausdrücklich als Entwurf gekennzeichnet. Details und Quellen: [rechtliche Freigabe](docs/legal-review.md).

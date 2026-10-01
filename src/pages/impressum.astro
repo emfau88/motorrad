@@ -1,35 +1,66 @@
 ---
-import PageHero from "../components/PageHero.astro";
-import PlaceholderNotice from "../components/PlaceholderNotice.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { legalInfo } from "../config/legal";
+import V9LegalLayout from "../layouts/V9LegalLayout.astro";
+import { siteUrl } from "../utils/urls";
 ---
 
-<BaseLayout
+<V9LegalLayout
   title="Impressum"
-  description="Impressum der Ottenauer Motorradfreunde."
-  noIndex={true}
+  description="Anbieterangaben und Kontakt der Ottenauer Motorradfreunde e. V."
 >
-  <PageHero
-    eyebrow="Rechtliches"
-    title="Impressum"
-    intro="Die rechtlich erforderlichen Angaben werden vor der Veröffentlichung durch den Verein ergänzt und geprüft."
-    imageLabel="Impressum"
-    imageDescription="Dokumentenplatzhalter"
-  />
-  <section class="legal section">
-    <div class="container">
-      <PlaceholderNotice title="Rechtlicher Platzhalter">
-        Diese Seite ist noch kein vollständiges Impressum. Verantwortliche
-        Person, Anschrift, Kontakt und Registerangaben dürfen erst nach
-        verbindlicher Prüfung veröffentlicht werden.
-      </PlaceholderNotice>
-    </div>
+  <section aria-labelledby="provider-title">
+    <h2 id="provider-title">Anbieter dieser Website</h2>
+    <address>
+      <strong>{legalInfo.name}</strong>
+      <br />
+      {legalInfo.street}
+      <br />
+      {legalInfo.postalCode} {legalInfo.city}
+      <br />
+      Deutschland
+    </address>
+    <p>Eingetragener Verein mit Sitz in Gaggenau.</p>
   </section>
-</BaseLayout>
-
-<style>
-  .legal {
-    min-height: 35svh;
-    background: var(--color-paper-bright);
-  }
-</style>
+  <section aria-labelledby="board-title">
+    <h2 id="board-title">Vorstand und Kontakt</h2>
+    <p>1. Vorstand und Ansprechpartner: {legalInfo.chairperson}.</p>
+    <p>
+      Telefon: <a href={`tel:${legalInfo.phoneHref}`}>{legalInfo.phone}</a>
+      <br />
+      E-Mail: <a href={`mailto:${legalInfo.email}`}>{legalInfo.email}</a>
+    </p>
+    {legalInfo.requiresClubConfirmation && (
+      <p>
+        Die vertretungsberechtigten Vorstandsmitglieder und ihre satzungsmäßige
+        Vertretungsregel werden vor der endgültigen Freigabe bestätigt.
+      </p>
+    )}
+  </section>
+  <section aria-labelledby="register-title">
+    <h2 id="register-title">Vereinsregister</h2>
+    <p>
+      Registergericht: {legalInfo.registerCourt}
+      <br />
+      Registernummer: {legalInfo.registerNumber}
+    </p>
+  </section>
+  <section aria-labelledby="location-title">
+    <h2 id="location-title">Clubhaus und Vereinsgelände</h2>
+    <p>
+      Berliner Straße 4 / Berliner Brücke
+      <br />
+      76571 Gaggenau-Ottenau
+    </p>
+    <p>
+      Die Adresse des Vereinsgeländes ist von der oben genannten
+      Vereinsanschrift zu unterscheiden.
+    </p>
+  </section>
+  <section aria-labelledby="privacy-title">
+    <h2 id="privacy-title">Datenschutz</h2>
+    <p>
+      Informationen zur Verarbeitung personenbezogener Daten finden Sie in
+      unserer <a href={siteUrl("/datenschutz/")}>Datenschutzerklärung</a>.
+    </p>
+  </section>
+</V9LegalLayout>

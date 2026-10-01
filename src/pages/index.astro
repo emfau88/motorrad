@@ -1,41 +1,66 @@
 ---
+import V9Photo from "../components/V9Photo.astro";
+
 const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
-const assetRevision = "20260926-2";
+const assetRevision = "20261001-2";
+const directionsUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=Merkurhalle%20Ottenau%2C%20Gaggenau";
+const photoSources = (name: string) => {
+  const maxWidth =
+    name === "clubhaus" ? 1148 : name === "gemeinsame-touren" ? 1840 : 1920;
+  const sizes = [640, 1280, 1920].filter(
+    (width, index, widths) =>
+      index === 0 ||
+      Math.min(widths[index - 1], maxWidth) !== Math.min(width, maxWidth),
+  );
+  return sizes
+    .map(
+      (width) =>
+        `${asset(`${name}-${width}.webp`)} ${Math.min(width, maxWidth)}w`,
+    )
+    .join(", ");
+};
 
 const navigation = [
   { href: "#jubilaeum", label: "Jubiläum" },
-  { href: "#aktuell", label: "Aktuelles" },
+  { href: "#aktuell", label: "Vereinsleben" },
   { href: "#geschichte", label: "Verein" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 
-const newsItems = [
+const clubStories = [
   {
-    image: "nachwuchs-presseausschnitt.webp",
-    alt: "Presseausschnitt Nachwuchs gesucht",
-    category: "Vereinsaufruf",
-    date: "Dezember 2024",
-    title: "Nachwuchs gesucht",
-    text: "Der 1976 gegründete Verein sucht jüngere Mitglieder. Stammtisch ist jeden zweiten Donnerstag, dazu gibt es gemeinsame Ausfahrten bis hin zur einwöchigen Alpentour.",
+    image: "gemeinschaft-2016",
+    alt: "Mitglieder der Ottenauer Motorradfreunde beim 40-jährigen Jubiläum 2016 mit zwei klassischen Motorrädern",
+    width: 1920,
+    height: 863,
+    category: "Gemeinschaft",
+    detail: "Rückblick · 2016",
+    title: "Mehr als Motorräder",
+    text: "Unser gemeinsames Hobby verbindet Generationen. Seit 1976 gehören gemeinsame Erlebnisse und die Freude am Vereinsleben dazu – hier beim 40-jährigen Jubiläum 2016.",
   },
   {
-    image: "erste-hilfe-gruppenfoto.webp",
-    alt: "OMF-Gruppenfoto beim Erste-Hilfe-Kurs",
-    category: "Sicherheit",
-    date: "Januar 2024",
-    title: "Erste-Hilfe-Kurs",
-    text: "14 Teilnehmende trainierten Seitenlagerung, Helmabnahme und den Umgang mit dem Defibrillator.",
+    image: "gemeinsame-touren",
+    alt: "Verschiedene Touren- und Sportmotorräder bei einer gemeinsamen Ausfahrt",
+    width: 1840,
+    height: 1035,
+    category: "Unterwegs",
+    detail: "Gemeinsame Ausfahrten",
+    title: "Gemeinsame Touren",
+    text: "Ob durchs Murgtal oder weiter hinaus: Zusammen unterwegs zu sein und die nächste Pause miteinander zu genießen, macht unser Hobby besonders.",
   },
   {
-    image: "veranstaltung.webp",
-    alt: "Besucher auf einer OMF-Veranstaltung",
-    category: "Veranstaltung",
-    date: "1. Mai",
-    title: "Maihockete",
-    text: "Die traditionelle Hockete auf dem Vereinsgelände gehört zu den wiederkehrenden öffentlichen Terminen der Ottenauer Motorradfreunde.",
+    image: "clubhaus",
+    alt: "Drei Motorradfreunde mit ihren Motorrädern vor dem OMF-Clubhaus",
+    width: 1148,
+    height: 780,
+    category: "Treffpunkt",
+    detail: "Gaggenau-Ottenau",
+    title: "Unser Clubhaus",
+    text: "Hier treffen wir uns zum Stammtisch, tauschen uns aus und lernen neue Motorradfreunde kennen. Wer Interesse hat, kann einfach vorbeischauen oder vorher Kontakt aufnehmen.",
   },
 ];
 
@@ -88,7 +113,14 @@ const history = [
       property="og:description"
       content="Vereinsleben, Termine, Aktuelles und 50 Jahre OMF."
     />
-    <meta property="og:image" content={asset("veranstaltung.webp")} />
+    <meta
+      property="og:image"
+      content={`https://emfau88.github.io${asset("gemeinschaft-2016-1920.webp")}`}
+    />
+    <meta
+      property="og:image:alt"
+      content="Ottenauer Motorradfreunde beim 40-jährigen Jubiläum 2016"
+    />
     <link rel="canonical" href="https://emfau88.github.io/motorrad/" />
     <link rel="icon" href={asset("omf-logo.webp")} />
     <link
@@ -235,11 +267,19 @@ const history = [
             </div>
           </div>
           <article class="card dark event-box reveal">
-            <div
-              class="event-media"
-              role="img"
-              aria-label="Besucherinnen und Besucher bei einer OMF-Veranstaltung"
-            ></div>
+            <figure class="event-media">
+              <V9Photo
+                src={asset("gemeinschaft-2016-1280.webp")}
+                srcset={photoSources("gemeinschaft-2016")}
+                fullSrc={asset("gemeinschaft-2016-1920.webp")}
+                caption="Rückblick: 40 Jahre OMF · 2016"
+                sizes="(max-width: 1020px) 92vw, 560px"
+                alt="Gemeinsames Gruppenfoto zum 40-jährigen Vereinsjubiläum 2016"
+                width={1920}
+                height={863}
+              />
+              <figcaption>Rückblick: 40 Jahre OMF · 2016</figcaption>
+            </figure>
             <div class="event-main">
               <div class="pill">
                 <span class="dot"></span> Jubiläumsfest
@@ -258,7 +298,32 @@ const history = [
                 id="countdown"
                 data-target="2026-10-17T10:30:00+02:00"
                 aria-label="Zeit bis zum Jubiläumsfest"
-              ></div>
+                aria-live="off"
+              >
+                {[
+                  ["days", "Tage"],
+                  ["hours", "Stunden"],
+                  ["minutes", "Minuten"],
+                  ["seconds", "Sekunden"],
+                ].map(([unit, label]) => (
+                  <div class="count">
+                    <b data-count={unit}>–</b>
+                    <small>{label}</small>
+                  </div>
+                ))}
+              </div>
+              <p id="countdown-status" hidden>
+                Jubiläum läuft / Termin erreicht
+              </p>
+              <a
+                class="event-directions"
+                href={directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Anfahrt zur Merkurhalle <span aria-hidden="true">↗</span>
+                <small>Route in Google Maps öffnen</small>
+              </a>
             </div>
           </article>
         </div>
@@ -268,30 +333,29 @@ const history = [
         <div class="wrap">
           <div class="section-head reveal">
             <div>
-              <div class="eyebrow">Aktuelles</div>
+              <div class="eyebrow">Einblicke</div>
               <h2 class="display" id="news-title">
-                Neues aus dem Verein
+                Das ist unser Verein
               </h2>
             </div>
           </div>
           <div class="news-grid">
-            {newsItems.map((item, index) => (
-              <article
-                class:list={["story", "reveal", { featured: index === 0 }]}
-              >
-                <div class="thumb">
-                  <img
-                    src={asset(item.image)}
-                    alt={item.alt}
-                    width={index === 0 ? 549 : index === 1 ? 480 : 512}
-                    height={index === 0 ? 482 : index === 1 ? 260 : 512}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+            {clubStories.map((item) => (
+              <article class="story reveal">
+                <V9Photo
+                  class="thumb"
+                  src={asset(`${item.image}-1280.webp`)}
+                  srcset={photoSources(item.image)}
+                  fullSrc={asset(`${item.image}-1920.webp`)}
+                  caption={`${item.title} · ${item.detail}`}
+                  sizes="(max-width: 720px) 92vw, (max-width: 1020px) 45vw, 380px"
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                />
                 <div class="story-meta">
                   <span>{item.category}</span>
-                  <span>{item.date}</span>
+                  <span>{item.detail}</span>
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -306,26 +370,43 @@ const history = [
         id="geschichte"
         aria-labelledby="history-title"
       >
-        <div class="wrap timeline reveal">
-          <div class="intro-col">
-            <div class="eyebrow">Verein & Geschichte</div>
-            <h2 class="display" id="history-title">
-              Seit
-              <br />
-              1976.
-            </h2>
-          </div>
-          <div class="timeline-list">
-            {history.map((item) => (
-              <div class="time-row">
-                <div class="year">{item.year}</div>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+        <div class="wrap">
+          <div class="timeline reveal">
+            <div class="intro-col">
+              <div class="eyebrow">Verein & Geschichte</div>
+              <h2 class="display" id="history-title">
+                Seit
+                <br />
+                1976.
+              </h2>
+            </div>
+            <div class="timeline-list">
+              {history.map((item) => (
+                <div class="time-row">
+                  <div class="year">{item.year}</div>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          <figure class="history-photo reveal">
+            <V9Photo
+              src={asset("vereinsgeschichte-1280.webp")}
+              srcset={photoSources("vereinsgeschichte")}
+              fullSrc={asset("vereinsgeschichte-1920.webp")}
+              caption="Gemeinsam unterwegs – ein Blick in unser Vereinsarchiv"
+              sizes="(max-width: 1280px) 92vw, 1180px"
+              alt="Historisches Gruppenfoto der Ottenauer Motorradfreunde mit ihren Motorrädern im Freien"
+              width={1920}
+              height={807}
+            />
+            <figcaption>
+              Gemeinsam unterwegs – ein Blick in unser Vereinsarchiv.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -386,9 +467,9 @@ const history = [
               <div class="contact">
                 <div>
                   <strong>Vereinsgelände</strong>
-                  <span>Berliner Straße 4 / Berliner Brücke</span>
                 </div>
                 <div>
+                  <span>Berliner Straße 4 / Berliner Brücke</span>
                   <span>76571 Gaggenau-Ottenau</span>
                 </div>
               </div>
@@ -397,6 +478,33 @@ const history = [
         </div>
       </section>
     </main>
+
+    <dialog
+      class="photo-viewer"
+      id="photo-viewer"
+      aria-labelledby="photo-viewer-caption"
+    >
+      <button
+        type="button"
+        class="photo-viewer__close"
+        aria-label="Großansicht schließen"
+      >
+        ×
+      </button>
+      <figure class="photo-viewer__figure">
+        <img id="photo-viewer-image" alt="" />
+        <figcaption id="photo-viewer-caption"></figcaption>
+      </figure>
+      <div class="photo-viewer__controls">
+        <button type="button" data-photo-prev aria-label="Vorheriges Foto">
+          ←
+        </button>
+        <span id="photo-viewer-counter" aria-live="polite"></span>
+        <button type="button" data-photo-next aria-label="Nächstes Foto">
+          →
+        </button>
+      </div>
+    </dialog>
 
     <footer>
       <div class="wrap">
@@ -424,9 +532,14 @@ const history = [
               <a href={item.href}>{item.label}</a>
             ))}
           </nav>
-          <div class="footer-bottom">
-            Ottenauer Motorradfreunde e. V. · Gaggenau-Ottenau
-          </div>
+          <nav aria-label="Rechtliche Informationen">
+            <h2>Informationen</h2>
+            <a href={`${basePath}impressum/`}>Impressum</a>
+            <a href={`${basePath}datenschutz/`}>Datenschutz</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          Ottenauer Motorradfreunde e. V. · Gaggenau-Ottenau
         </div>
       </div>
     </footer>

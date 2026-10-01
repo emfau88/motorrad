@@ -1,35 +1,189 @@
 ---
-import PageHero from "../components/PageHero.astro";
-import PlaceholderNotice from "../components/PlaceholderNotice.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { legalInfo } from "../config/legal";
+import V9LegalLayout from "../layouts/V9LegalLayout.astro";
+import { siteUrl } from "../utils/urls";
 ---
 
-<BaseLayout
+<V9LegalLayout
   title="Datenschutz"
-  description="Datenschutzhinweise der Ottenauer Motorradfreunde."
-  noIndex={true}
+  description="Datenschutzhinweise zur OMF-Website: Hosting, Kontakt, Vereinsfotos und Ihre Rechte."
 >
-  <PageHero
-    eyebrow="Rechtliches"
-    title="Datenschutz"
-    intro="Die Datenschutzhinweise werden passend zu den tatsächlich eingesetzten Diensten und Kontaktwegen ergänzt."
-    imageLabel="Datenschutz"
-    imageDescription="Dokumentenplatzhalter"
-  />
-  <section class="legal section">
-    <div class="container">
-      <PlaceholderNotice title="Rechtlicher Platzhalter">
-        Diese Seite enthält noch keine vollständige Datenschutzerklärung. Vor
-        dem öffentlichen Start wird sie anhand der endgültigen Funktionen,
-        Inhalte und Dienstleister erstellt und geprüft.
-      </PlaceholderNotice>
-    </div>
+  <section aria-labelledby="scope-title">
+    <h2 id="scope-title">1. Geltungsbereich</h2>
+    <p>
+      Diese Hinweise beschreiben die Verarbeitung personenbezogener Daten beim
+      Besuch dieser Website und bei einer Kontaktaufnahme über die dort
+      genannten Kontaktwege. Die Website informiert über das Vereinsleben der
+      Ottenauer Motorradfreunde. Sie enthält keine Online-Mitgliederverwaltung
+      und keinen Online-Shop.
+    </p>
   </section>
-</BaseLayout>
-
-<style>
-  .legal {
-    min-height: 35svh;
-    background: var(--color-paper-bright);
-  }
-</style>
+  <section aria-labelledby="controller-title">
+    <h2 id="controller-title">2. Verantwortlicher und Kontakt</h2>
+    <address>
+      <strong>{legalInfo.name}</strong>
+      <br />
+      {legalInfo.street}
+      <br />
+      {legalInfo.postalCode} {legalInfo.city}
+    </address>
+    <p>
+      Ansprechpartner: {legalInfo.chairperson}, 1. Vorstand.
+      <br />
+      E-Mail: <a href={`mailto:${legalInfo.email}`}>{legalInfo.email}</a>
+      <br />
+      Telefon: <a href={`tel:${legalInfo.phoneHref}`}>{legalInfo.phone}</a>
+    </p>
+    <p>
+      Weitere Anbieterangaben finden Sie im{" "}
+      <a href={siteUrl("/impressum/")}>Impressum</a>.
+    </p>
+  </section>
+  <section aria-labelledby="hosting-title">
+    <h2 id="hosting-title">3. Hosting und technische Zugriffsdaten</h2>
+    <p>
+      Die Website wird über GitHub Pages ausgeliefert. GitHub nennt GitHub B.V.,
+      Prins Bernhardplein 200, 1097 JB Amsterdam, Niederlande, und GitHub, Inc.,
+      88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA, als
+      verantwortliche Gesellschaften für seine Dienste.
+    </p>
+    <p>
+      Beim Abruf erhält der Hostinganbieter technische Verbindungsdaten,
+      insbesondere Ihre IP-Adresse. GitHub Pages speichert IP-Adressen nach
+      eigener Angabe zu Sicherheitszwecken. Die Bereitstellung und Absicherung
+      dieser Website erfolgt aufgrund unseres berechtigten Interesses an einem
+      zuverlässigen, sicheren Internetauftritt (Art. 6 Abs. 1 lit. f DSGVO).
+    </p>
+    <p>
+      GitHub verarbeitet Daten auch außerhalb der EU, insbesondere in den USA,
+      und beschreibt hierfür Standardvertragsklauseln sowie seine Teilnahme am
+      EU-US Data Privacy Framework. Eine verbindliche Speicherfrist speziell für
+      Pages-Zugriffsprotokolle nennt die geprüfte Dokumentation nicht.
+    </p>
+    <p>
+      Details:{" "}
+      <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">
+        GitHub Pages
+      </a>{" "}
+      und{" "}
+      <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">
+        GitHub-Datenschutzhinweise
+      </a>
+      .
+    </p>
+  </section>
+  <section aria-labelledby="cookies-title">
+    <h2 id="cookies-title">4. Cookies, Analyse und externe Inhalte</h2>
+    <p>
+      Unser Website-Code setzt keine Cookies, verwendet keine Browser-Speicher
+      zur Besucherwiedererkennung und enthält kein Besuchertracking oder
+      Werbeanalysewerkzeug. Bilder und Schriftdateien werden zusammen mit der
+      Website ausgeliefert. Google Fonts, Karten, Videos und
+      Social-Media-Widgets werden nicht von externen Anbietern eingebettet.
+    </p>
+    <p>
+      Externe Links stellen erst beim Aufrufen eine Verbindung zur verlinkten
+      Seite her. Dort gelten die Datenschutzhinweise des jeweiligen Anbieters.
+    </p>
+  </section>
+  <section aria-labelledby="contact-title">
+    <h2 id="contact-title">5. Kontaktaufnahme</h2>
+    <p>
+      Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre
+      mitgeteilten Kontaktdaten und den Inhalt Ihrer Anfrage, um Ihr Anliegen zu
+      beantworten. Eine Anfrage ist freiwillig; ohne die hierfür notwendigen
+      Angaben können wir sie gegebenenfalls nicht bearbeiten.
+    </p>
+    <p>
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage eine
+      Mitgliedschaft oder andere vorvertragliche beziehungsweise vertragliche
+      Maßnahmen betrifft. Für sonstige Anfragen ist Art. 6 Abs. 1 lit. f DSGVO
+      maßgeblich; unser berechtigtes Interesse ist die Kommunikation mit
+      Interessierten und Mitgliedern.
+    </p>
+    <p>
+      Die Daten werden gelöscht, sobald die Bearbeitung abgeschlossen ist und
+      keine weitere Aufbewahrung erforderlich ist. Gesetzliche
+      Aufbewahrungspflichten und die erforderliche Sicherung rechtlicher
+      Ansprüche bleiben unberührt. Eingesetzte E-Mail- beziehungsweise
+      Telekommunikationsanbieter erhalten die zur Übermittlung notwendigen
+      Daten.
+    </p>
+    <p>
+      Die auf der Website genannten WhatsApp-Kontaktmöglichkeiten sind keine
+      eingebetteten Dienste. Beim Seitenbesuch werden von unserem Code keine
+      Daten an WhatsApp übermittelt. Wenn Sie WhatsApp selbst zur
+      Kontaktaufnahme nutzen, verarbeitet auch der Anbieter Daten nach seinen{" "}
+      <a href="https://www.whatsapp.com/legal/privacy-policy-eea">
+        Datenschutzhinweisen
+      </a>
+      . Sie können stattdessen E-Mail oder Telefon verwenden.
+    </p>
+  </section>
+  <section aria-labelledby="photos-title">
+    <h2 id="photos-title">6. Vereinsfotos</h2>
+    <p>
+      Auf dieser Website zeigen wir freigegebene Fotografien aus dem
+      Vereinsleben und dem Vereinsarchiv. Erkennbare Personen können auf diesen
+      Bildern personenbezogene Daten darstellen. Zweck ist die Darstellung
+      unserer Gemeinschaft und ihrer Geschichte.
+    </p>
+    <p>
+      Soweit die Veröffentlichung auf Ihrer Einwilligung beruht, ist Art. 6 Abs.
+      1 lit. a DSGVO die Rechtsgrundlage. Sie können Ihre Einwilligung jederzeit
+      für die Zukunft über den oben genannten Kontakt widerrufen. Die
+      Rechtmäßigkeit der bisherigen Verarbeitung bleibt davon unberührt. Soweit
+      eine Veröffentlichung auf berechtigten Interessen beruht, erfolgt sie auf
+      Grundlage von Art. 6 Abs. 1 lit. f DSGVO nach Abwägung Ihrer Interessen
+      und unter Beachtung des Rechts am eigenen Bild.
+    </p>
+    <p>
+      Bitte kontaktieren Sie uns, wenn Sie eine Veröffentlichung Ihrer Abbildung
+      überprüfen oder entfernen lassen möchten. Die Bilder bleiben nur so lange
+      veröffentlicht, wie der jeweilige Zweck und die Rechtsgrundlage
+      fortbestehen. Im Internet öffentlich zugängliche Bilder können von Dritten
+      gespeichert oder über Suchmaschinen gefunden werden.
+    </p>
+  </section>
+  <section aria-labelledby="rights-title">
+    <h2 id="rights-title">7. Ihre Rechte</h2>
+    <p>
+      Unter den gesetzlichen Voraussetzungen haben Sie das Recht auf Auskunft
+      (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung
+      der Verarbeitung (Art. 18) und Datenübertragbarkeit (Art. 20). Erteilte
+      Einwilligungen können Sie jederzeit für die Zukunft widerrufen.
+    </p>
+    <h3>
+      Widerspruch gegen eine Verarbeitung auf Grundlage berechtigter Interessen
+    </h3>
+    <p>
+      Sie können einer auf Art. 6 Abs. 1 lit. f DSGVO beruhenden Verarbeitung
+      aus Gründen widersprechen, die sich aus Ihrer besonderen Situation ergeben
+      (Art. 21 DSGVO). Wenden Sie sich hierzu an den oben genannten Kontakt.
+    </p>
+    <p>
+      Sie haben außerdem das Recht, sich bei einer Datenschutzaufsichtsbehörde
+      zu beschweren (Art. 77 DSGVO), insbesondere an Ihrem Aufenthaltsort,
+      Arbeitsplatz oder dem Ort des vermuteten Verstoßes. Für Baden-Württemberg
+      ist dies der{" "}
+      <a href="https://www.baden-wuerttemberg.datenschutz.de/kontakt-aufnehmen/">
+        Landesbeauftragte für den Datenschutz und die Informationsfreiheit
+        Baden-Württemberg
+      </a>
+      .
+    </p>
+  </section>
+  <section aria-labelledby="security-title">
+    <h2 id="security-title">8. Sicherheit und automatisierte Entscheidungen</h2>
+    <p>
+      Die öffentliche Website wird über HTTPS übertragen. E-Mails können dennoch
+      je nach eingesetztem Dienst unzureichend geschützt sein; senden Sie daher
+      bitte keine unnötigen sensiblen Angaben.
+    </p>
+    <p>
+      Wir setzen auf dieser Website keine automatisierte Entscheidungsfindung
+      und kein Profiling ein. Bei Änderungen der Website-Funktionen oder des
+      Hostings werden diese Datenschutzhinweise entsprechend angepasst.
+    </p>
+  </section>
+</V9LegalLayout>

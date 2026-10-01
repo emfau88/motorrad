@@ -49,22 +49,108 @@
   }
 
   const target = new Date(countdown.dataset.target).getTime();
+  const countdownStatus = document.getElementById("countdown-status");
+  const countValues = Object.fromEntries(
+    Array.from(countdown.querySelectorAll("[data-count]")).map((element) => [
+      element.dataset.count,
+      element,
+    ]),
+  );
 
   function tick() {
     const diff = target - Date.now();
     if (diff <= 0) {
-      countdown.innerHTML =
-        '<div class="pill"><span class="dot"></span> Jubiläum läuft / Termin erreicht</div>';
+      countdown.hidden = true;
+      if (countdownStatus) countdownStatus.hidden = false;
       return;
     }
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor(diff / 3600000) % 24;
-    const mins = Math.floor(diff / 60000) % 60;
-    countdown.innerHTML = `<div class="count"><b>${days}</b><small>Tage</small></div><div class="count"><b>${String(hours).padStart(2, "0")}</b><small>Stunden</small></div><div class="count"><b>${String(mins).padStart(2, "0")}</b><small>Minuten</small></div>`;
+    const values = {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor(diff / 3600000) % 24,
+      minutes: Math.floor(diff / 60000) % 60,
+      seconds: Math.floor(diff / 1000) % 60,
+    };
+    for (const [unit, value] of Object.entries(values)) {
+      const element = countValues[unit];
+      const text =
+        unit === "days" ? String(value) : String(value).padStart(2, "0");
+      if (element && element.textContent !== text) element.textContent = text;
+    }
   }
 
   tick();
-  setInterval(tick, 60000);
+  if (Number.isFinite(target)) setInterval(tick, 1000);
+
+  const viewer = document.getElementById("photo-viewer");
+  const viewerImage = document.getElementById("photo-viewer-image");
+  const viewerCaption = document.getElementById("photo-viewer-caption");
+  const viewerCounter = document.getElementById("photo-viewer-counter");
+  const photoLinks = Array.from(
+    document.querySelectorAll("a[data-photo-caption]"),
+  );
+  // Repeated photos (e.g. anniversary card and story) appear only once in the viewer.
+  const photos = Array.from(
+    new Map(photoLinks.map((link) => [link.href, link])).values(),
+  );
+
+  if (
+    viewer &&
+    viewerImage &&
+    viewerCaption &&
+    viewerCounter &&
+    typeof viewer.showModal === "function"
+  ) {
+    let photoIndex = 0;
+    let previousOverflow = "";
+    const showPhoto = (index) => {
+      photoIndex = (index + photos.length) % photos.length;
+      const photo = photos[photoIndex];
+      viewerImage.src = photo.href;
+      viewerImage.alt = photo.dataset.photoAlt;
+      viewerCaption.textContent = photo.dataset.photoCaption;
+      viewerCounter.textContent = `${photoIndex + 1} / ${photos.length}`;
+    };
+
+    photoLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (
+          event.button !== 0 ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.shiftKey ||
+          event.altKey
+        )
+          return;
+        event.preventDefault();
+        showPhoto(photos.findIndex((photo) => photo.href === link.href));
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        viewer.showModal();
+      });
+    });
+    viewer
+      .querySelector(".photo-viewer__close")
+      .addEventListener("click", () => viewer.close());
+    viewer
+      .querySelector("[data-photo-prev]")
+      .addEventListener("click", () => showPhoto(photoIndex - 1));
+    viewer
+      .querySelector("[data-photo-next]")
+      .addEventListener("click", () => showPhoto(photoIndex + 1));
+    viewer.addEventListener("click", (event) => {
+      if (event.target === viewer) viewer.close();
+    });
+    viewer.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        event.preventDefault();
+        showPhoto(photoIndex + (event.key === "ArrowLeft" ? -1 : 1));
+      }
+    });
+    viewer.addEventListener("close", () => {
+      document.body.style.overflow = previousOverflow;
+      viewerImage.removeAttribute("src");
+    });
+  }
 
   addEventListener("keydown", (event) => {
     if (event.key === "Escape" && drawer.classList.contains("open")) {

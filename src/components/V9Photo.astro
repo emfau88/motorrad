@@ -1,0 +1,38 @@
+---
+interface Props {
+  src: string;
+  srcset: string;
+  fullSrc: string;
+  sizes: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  class?: string;
+}
+
+const { fullSrc, caption, class: className, ...image } = Astro.props;
+---
+
+<a
+  class:list={["photo-link", className]}
+  href={fullSrc}
+  data-photo-caption={caption}
+  data-photo-alt={image.alt}
+  aria-label={`Foto vergrößern: ${caption}`}
+>
+  <img {...image} loading="lazy" decoding="async" />
+  <span class="photo-link__hint" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+    >
+      <path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6" />
+    </svg>
+    Großansicht
+  </span>
+</a>
