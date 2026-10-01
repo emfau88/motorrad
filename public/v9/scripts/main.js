@@ -13,6 +13,16 @@
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  const seal = document.querySelector(".anniversary-seal");
+  if (seal && "IntersectionObserver" in window) {
+    const sealObserver = new IntersectionObserver(([entry]) => {
+      seal.classList.toggle("is-visible", entry.isIntersecting);
+    });
+    sealObserver.observe(seal);
+  } else if (seal) {
+    seal.classList.add("is-visible");
+  }
+
   const setDrawer = (open) => {
     drawer.classList.toggle("open", open);
     menuBtn.classList.toggle("active", open);

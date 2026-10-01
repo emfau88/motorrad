@@ -48,16 +48,6 @@
 .legal-document address {
   font-style: normal;
 }
-.legal-review {
-  margin-top: 28px;
-  padding: 18px 22px;
-  border-left: 3px solid var(--gold);
-  background: #fff8df;
-}
-.legal-review p {
-  margin: 6px 0 0;
-  font-size: 0.88rem;
-}
 .legal-footer {
   display: flex;
   flex-wrap: wrap;

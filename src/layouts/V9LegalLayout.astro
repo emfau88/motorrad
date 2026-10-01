@@ -58,17 +58,6 @@ const asset = (file: string) => siteUrl(`/v9/assets/${file}`);
       <div class="eyebrow">Rechtliche Informationen</div>
       <h1 class="display">{title}</h1>
       <p class="legal-date">Stand: {legalInfo.updated}</p>
-      {legalInfo.requiresClubConfirmation && (
-        <aside class="legal-review" aria-label="Hinweis zum Prüfstand">
-          <strong>Vereinsbestätigung noch offen</strong>
-          <p>
-            Die Angaben wurden anhand öffentlich zugänglicher Quellen
-            vorbereitet. Der Verein muss die zustellfähige Anschrift und die
-            aktuelle Vertretungsregel des Vorstands noch bestätigen. Die Texte
-            sind bis dahin ein Entwurf.
-          </p>
-        </aside>
-      )}
       <slot />
     </main>
     <footer>

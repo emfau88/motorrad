@@ -36,12 +36,47 @@ for (const route of ["impressum", "datenschutz"]) {
   assert(html.includes("Dorfstraße 139"));
   assert(html.includes("legal-document"));
   assert(!html.includes("Dokumentenplatzhalter"));
+  assert(!html.includes("Vereinsbestätigung noch offen"));
+  assert(!html.includes("Hinweis zum Prüfstand"));
 }
 assert(home.includes("Das ist unser Verein"));
 assert(home.includes("Rückblick: 40 Jahre OMF"));
 assert(home.includes("vereinsgeschichte-1280.webp"));
 assert(home.includes('data-count="seconds"'));
 assert(home.includes('id="photo-viewer"'));
+assert.equal([...home.matchAll(/anniversary-seal__branch--/g)].length, 2);
+assert(home.includes("anniversary-seal__glint"));
+const sealStyles = await readFile(
+  path.join(dist, "v9/styles/main.css"),
+  "utf8",
+);
+assert(
+  !sealStyles.includes(".anniversary-seal__logo-frame::after"),
+  "Logo must remain free of shine effects",
+);
+assert(sealStyles.includes("@keyframes seal-shine"));
+assert(sealStyles.includes("@keyframes seal-glint"));
+assert(sealStyles.includes("transform: translate(-65%, 65%)"));
+assert(sealStyles.includes("transform: translate(65%, -65%)"));
+assert(sealStyles.includes("top: 13.2%"));
+assert(sealStyles.includes("left: 82%"));
+assert(sealStyles.includes("prefers-reduced-motion: reduce"));
+const instagramLinks = [
+  ...home.matchAll(
+    /<a\b[^>]*href="https:\/\/www\.instagram\.com\/omf19762026\/"[^>]*>/g,
+  ),
+];
+assert.equal(
+  instagramLinks.length,
+  2,
+  "Instagram missing from contact area or footer",
+);
+for (const [link] of instagramLinks) {
+  assert(link.includes('target="_blank"'));
+  assert(link.includes('rel="noopener noreferrer"'));
+  assert(link.includes("neuem Tab"));
+}
+assert(!home.includes("instagram.com/embed"));
 assert.equal([...home.matchAll(/data-photo-caption=/g)].length, 5);
 assert(
   home.includes(

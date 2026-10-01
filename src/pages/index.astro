@@ -5,7 +5,8 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
-const assetRevision = "20261001-2";
+const assetRevision = "20261001-6";
+const instagramUrl = "https://www.instagram.com/omf19762026/";
 const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Merkurhalle%20Ottenau%2C%20Gaggenau";
 const photoSources = (name: string) => {
@@ -197,24 +198,22 @@ const history = [
             </a>
 
             <div class="anniversary-seal" aria-hidden="true">
-              <img
-                class="anniversary-seal__base"
-                src={asset("anniversary-laurel-v2.png")}
-                alt=""
-                width="768"
-                height="768"
-              />
+              <span class="anniversary-seal__branch anniversary-seal__branch--left"></span>
+              <span class="anniversary-seal__branch anniversary-seal__branch--right"></span>
               <span class="anniversary-seal__content">
-                <img
-                  class="anniversary-seal__logo"
-                  src={asset("omf-logo-transparent-v2.png")}
-                  alt=""
-                  width="1000"
-                  height="630"
-                />
+                <span class="anniversary-seal__logo-frame">
+                  <img
+                    class="anniversary-seal__logo"
+                    src={asset("omf-logo-transparent-v2.png")}
+                    alt=""
+                    width="1000"
+                    height="630"
+                  />
+                </span>
                 <strong>50 Jahre</strong>
                 <span>1976 — 2026</span>
               </span>
+              <span class="anniversary-seal__glint"></span>
             </div>
           </div>
 
@@ -474,6 +473,22 @@ const history = [
                 </div>
               </div>
             </div>
+            <div class="contact-social">
+              <p>Auch auf Instagram findest du uns:</p>
+              <a
+                class="btn ghost social-profile"
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="OMF auf Instagram: @omf19762026 (öffnet in neuem Tab)"
+              >
+                <span>
+                  <strong>OMF auf Instagram</strong>
+                  <small>@omf19762026</small>
+                </span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -525,6 +540,15 @@ const history = [
                 <p>Ottenauer Motorradfreunde e. V.</p>
               </div>
             </div>
+            <a
+              class="footer-social"
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram: @omf19762026 (öffnet in neuem Tab)"
+            >
+              Instagram · @omf19762026 <span aria-hidden="true">↗</span>
+            </a>
           </div>
           <nav aria-label="Navigation im Fußbereich">
             <h2>Navigation</h2>

@@ -43,7 +43,8 @@ Recherche- und Technikstand: 1. Oktober 2026. Keine Garantie einer juristischen 
    Der Auftraggeber hat die Rechte an Fotos und erkennbaren Personen bestätigt.
 5. Danach Texte prüfen, fehlende Vertretungsangaben ergänzen und erst dann
    `requiresClubConfirmation` in `src/config/legal.ts` auf `false` setzen.
-   Der Entwurfshinweis ist kein Ersatz für fehlende Pflichtangaben.
+   Die sichtbaren Entwurfshinweise wurden auf Wunsch entfernt. Dies bestätigt
+   keine offenen Vereinsangaben und ersetzt keine fehlenden Pflichtangaben.
 
 ## Technischer Umfang
 

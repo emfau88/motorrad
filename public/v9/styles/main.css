@@ -456,6 +456,8 @@ button {
   font-size: 0.76rem;
 }
 .anniversary-seal {
+  --laurel-gold: #edc800;
+  --seal-cycle: 12s;
   position: relative;
   display: flex;
   width: 300px;
@@ -465,14 +467,115 @@ button {
   justify-content: stretch;
   filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.32));
 }
-.anniversary-seal__base {
+.anniversary-seal__branch {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  width: 50%;
   height: 100%;
-  object-fit: contain;
-  filter: grayscale(1) sepia(1) saturate(1.35) brightness(0.94);
-  opacity: 0.84;
+  background: var(--laurel-gold);
+  /* Each half has its own transparent mask: no clipped composite edges. */
+  mask-image: url("../assets/anniversary-laurel-v2.png");
+  mask-size: 200% 100%;
+  mask-repeat: no-repeat;
+  mask-mode: alpha;
+  overflow: hidden;
+}
+.anniversary-seal__branch--left {
+  left: 0;
+  mask-position: left center;
+  transform: translateX(-7%);
+}
+.anniversary-seal__branch--right {
+  left: 50%;
+  mask-position: right center;
+  transform: translateX(7%);
+}
+.anniversary-seal__branch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  /* Both halves share the full seal's coordinates for one diagonal sweep. */
+  background: linear-gradient(
+    45deg,
+    transparent 44%,
+    rgba(255, 250, 217, 0.55) 49%,
+    rgba(255, 255, 245, 0.75) 50%,
+    transparent 56%
+  );
+  opacity: 0;
+  animation: seal-shine var(--seal-cycle) ease-in-out 2s infinite;
+  pointer-events: none;
+}
+.anniversary-seal__branch--right::after {
+  left: -100%;
+}
+.anniversary-seal__logo-frame {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+.anniversary-seal__glint {
+  position: absolute;
+  z-index: 2;
+  top: 13.2%;
+  left: 82%;
+  width: clamp(7px, 4%, 12px);
+  aspect-ratio: 1;
+  opacity: 0;
+  background: #fff6cc;
+  clip-path: polygon(
+    50% 0,
+    59% 40%,
+    100% 50%,
+    59% 60%,
+    50% 100%,
+    41% 60%,
+    0 50%,
+    41% 40%
+  );
+  animation: seal-glint var(--seal-cycle) ease-out 2s infinite;
+  pointer-events: none;
+}
+@keyframes seal-shine {
+  0% {
+    opacity: 0;
+    transform: translate(-65%, 65%);
+  }
+  2% {
+    opacity: 0.6;
+  }
+  11% {
+    opacity: 0.6;
+    transform: translate(65%, -65%);
+  }
+  12%,
+  100% {
+    opacity: 0;
+    transform: translate(65%, -65%);
+  }
+}
+@keyframes seal-glint {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+  13.5% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  16%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+}
+.js .anniversary-seal:not(.is-visible) .anniversary-seal__branch::after,
+.js .anniversary-seal:not(.is-visible) .anniversary-seal__glint {
+  animation-play-state: paused;
 }
 .anniversary-seal__content {
   position: relative;
@@ -488,9 +591,9 @@ button {
   text-align: center;
 }
 .anniversary-seal__logo {
-  width: 154px;
-  height: 98px;
-  margin: 0 0 8px;
+  width: 170px;
+  height: 107px;
+  margin: 0;
   object-fit: contain;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.38));
 }
@@ -501,7 +604,7 @@ button {
   text-transform: uppercase;
 }
 .anniversary-seal__content > span:last-child {
-  color: #e8cf85;
+  color: var(--laurel-gold);
 }
 .anniversary-seal strong {
   margin-bottom: 3px;
@@ -1071,6 +1174,35 @@ button {
   color: #b4bbb4;
   font-size: 0.88rem;
 }
+.contact-social {
+  margin-top: 22px;
+}
+.contact-social p {
+  margin: 0 0 12px;
+  color: #bfc5bf;
+  font-size: 0.88rem;
+}
+.social-profile {
+  gap: 20px;
+  max-width: 100%;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.social-profile strong,
+.social-profile small {
+  display: block;
+}
+.social-profile small {
+  margin-top: 3px;
+  color: #bfc5bf;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+.social-profile > span:last-child {
+  color: var(--gold2);
+  font-size: 1.25rem;
+}
 /* footer */
 footer {
   background: #090b0a;
@@ -1124,6 +1256,15 @@ footer a {
   line-height: 1.55;
   display: grid;
   gap: 12px;
+}
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.footer-social:hover {
+  color: var(--gold2);
 }
 /* Accessible full-size photo viewer; links also work without JavaScript. */
 .photo-link {
@@ -1242,6 +1383,11 @@ footer a {
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
+  .anniversary-seal__branch::after,
+  .anniversary-seal__glint {
+    animation: none;
+    opacity: 0;
+  }
   html {
     scroll-behavior: auto;
   }
@@ -1282,8 +1428,8 @@ footer a {
     padding: 45px 38px 32px;
   }
   .anniversary-seal__logo {
-    width: 122px;
-    height: 77px;
+    width: 134px;
+    height: 85px;
   }
   .anniversary-seal strong {
     font-size: 1.65rem;
@@ -1350,8 +1496,10 @@ footer a {
     padding: 30px 25px 21px;
   }
   .anniversary-seal__logo {
-    width: 82px;
-    height: 52px;
+    width: 90px;
+    height: 57px;
+  }
+  .anniversary-seal__logo-frame {
     margin-bottom: 4px;
   }
   .anniversary-seal strong {
