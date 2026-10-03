@@ -5,7 +5,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const asset = (file: string) => `${basePath}v9/assets/${file}`;
-const assetRevision = "20261002-5";
+const assetRevision = "20261003-1";
 const instagramUrl = "https://www.instagram.com/omf19762026/";
 const venueMapUrl =
   "https://www.openstreetmap.org/export/embed.html?bbox=8.3305%2C48.7868%2C8.3397%2C48.7905&layer=mapnik&marker=48.78862%2C8.33508";
@@ -45,6 +45,8 @@ const clubStories = [
     category: "Gemeinschaft",
     detail: "Rückblick · 2016",
     title: "Mehr als Motorräder",
+    caption:
+      "Gemeinschaft beim 40-jährigen Jubiläum der Ottenauer Motorradfreunde im Jahr 2016.",
     text: "Unser gemeinsames Hobby verbindet Generationen. Seit 1976 gehören gemeinsame Erlebnisse und die Freude am Vereinsleben dazu – hier beim 40-jährigen Jubiläum 2016.",
   },
   {
@@ -55,6 +57,8 @@ const clubStories = [
     category: "Unterwegs",
     detail: "Gemeinsame Ausfahrten",
     title: "Gemeinsame Touren",
+    caption:
+      "Gemeinsam unterwegs: eine Pause mit den Motorrädern auf einer unserer Ausfahrten.",
     text: "Ob durchs Murgtal oder weiter hinaus: Zusammen unterwegs zu sein und die nächste Pause miteinander zu genießen, macht unser Hobby besonders.",
   },
   {
@@ -65,7 +69,9 @@ const clubStories = [
     category: "Treffpunkt",
     detail: "Gaggenau-Ottenau",
     title: "Unser Clubhaus",
-    text: "Nach 3.100 Kilometern über Dresden durch Tschechien, Polen, die Slowakei, Ungarn und Österreich wieder am Clubhaus – festgehalten direkt nach der Rückkehr.",
+    caption:
+      "Nach 3.100 Kilometern über Dresden durch Tschechien, Polen, die Slowakei, Ungarn und Österreich wieder am Clubhaus – festgehalten direkt nach der Rückkehr.",
+    text: "Hier treffen wir uns zum Stammtisch, tauschen uns aus und lernen neue Motorradfreunde kennen. Wer Interesse hat, kann einfach vorbeischauen oder vorher Kontakt aufnehmen.",
   },
 ];
 
@@ -445,17 +451,20 @@ const history = [
           <div class="news-grid">
             {clubStories.map((item) => (
               <article class="story reveal">
-                <V9Photo
-                  class="thumb"
-                  src={asset(`${item.image}-1280.webp`)}
-                  srcset={photoSources(item.image)}
-                  fullSrc={asset(`${item.image}-1920.webp`)}
-                  caption={`${item.title} · ${item.detail}`}
-                  sizes="(max-width: 720px) 92vw, (max-width: 1020px) 45vw, 380px"
-                  alt={item.alt}
-                  width={item.width}
-                  height={item.height}
-                />
+                <figure class="story-photo">
+                  <V9Photo
+                    class="thumb"
+                    src={asset(`${item.image}-1280.webp`)}
+                    srcset={photoSources(item.image)}
+                    fullSrc={asset(`${item.image}-1920.webp`)}
+                    caption={item.caption}
+                    sizes="(max-width: 720px) 92vw, (max-width: 1020px) 45vw, 380px"
+                    alt={item.alt}
+                    width={item.width}
+                    height={item.height}
+                  />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
                 <div class="story-meta">
                   <span>{item.category}</span>
                   <span>{item.detail}</span>

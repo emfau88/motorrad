@@ -46,6 +46,12 @@ Die visuelle v9-Version ist die aktuelle Hauptseite. Sie wurde aus dem eigenstä
 - Hellen Hintergrund gedämpft und Abschnittsabstände harmonisiert; klare Hell-Dunkel-Gliederung beibehalten.
 - Überschrift „Seit 1976“ stärker gewichtet und Abschnittsanfänge beim Navigieren unterhalb des Headers sichtbar gehalten.
 
+## Änderungen vom 3. Oktober 2026
+
+- Einheitliche Bildunterschriften direkt unter den Vereinsfotos und in der Großansicht ergänzt.
+- Tourenrückblick dem Clubhausfoto zugeordnet; den Text zum Stammtisch und Kennenlernen wiederhergestellt.
+- Überschriften der Bildkarten bleiben trotz unterschiedlich langer Bildunterschriften auf gleicher Höhe.
+
 ## Lokal starten
 
 ```bash

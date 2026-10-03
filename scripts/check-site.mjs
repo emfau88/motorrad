@@ -46,6 +46,12 @@ for (const route of ["impressum", "datenschutz"]) {
   }
 }
 assert(home.includes("Das ist unser Verein"));
+assert.equal([...home.matchAll(/class="story-photo"/g)].length, 3);
+const tourCaption =
+  "Nach 3.100 Kilometern über Dresden durch Tschechien, Polen, die Slowakei, Ungarn und Österreich wieder am Clubhaus – festgehalten direkt nach der Rückkehr.";
+assert(home.includes(`<figcaption>${tourCaption}</figcaption>`));
+assert(home.includes(`data-photo-caption="${tourCaption}"`));
+assert(home.includes("Hier treffen wir uns zum Stammtisch"));
 assert(home.includes("Rückblick: 40 Jahre OMF"));
 assert(home.includes("vereinsgeschichte-1280.webp"));
 assert(home.includes('data-count="seconds"'));

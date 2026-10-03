@@ -1120,12 +1120,25 @@ button {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  row-gap: 12px;
 }
 .story {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 5;
   border-top: 1px solid var(--line);
   padding-top: 14px;
+}
+.story-photo {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  margin: 0;
+}
+.story-photo figcaption {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--muted);
 }
 .story .thumb {
   aspect-ratio: 16/9;
@@ -1133,7 +1146,7 @@ button {
   overflow: hidden;
   border: 1px solid var(--line);
   background: #151816;
-  margin-bottom: 14px;
+  margin-bottom: 0;
 }
 .story .thumb img {
   width: 100%;
@@ -1158,7 +1171,7 @@ button {
   font-size: clamp(1.52rem, 2.4vw, 2.25rem);
   line-height: 0.98;
   text-transform: uppercase;
-  margin: 4px 0 12px;
+  margin: 0;
 }
 .story p {
   margin: 0;
